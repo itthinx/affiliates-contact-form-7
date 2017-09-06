@@ -359,7 +359,7 @@ class Affiliates_CF7_Admin {
 
 		$output .= '<p>';
 		$output .= wp_nonce_field( self::SET_ADMIN_OPTIONS, self::NONCE, true, false );
-		$output .= '<input type="submit" name="submit" value="' . __( 'Save', AFF_CF7_PLUGIN_DOMAIN ) . '"/>';
+		$output .= '<input type="submit" name="submit" value="' . __( 'Save', AFF_CF7_PLUGIN_DOMAIN ) . '" class="button button-primary" />';
 		$output .= '</p>';
 
 		$output .= '</div>';

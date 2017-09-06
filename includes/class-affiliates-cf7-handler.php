@@ -28,7 +28,7 @@ class Affiliates_CF7_Handler {
 	 * Adds the proper initialization action on the wp_init hook.
 	 */
 	public static function init() {
-		add_action( 'init', array(__CLASS__, 'wp_init' ) );
+		add_action( 'init', array( __CLASS__, 'wp_init' ) );
 	}
 
 	/**
@@ -70,6 +70,18 @@ class Affiliates_CF7_Handler {
 			update_option( Affiliates_CF7::PLUGIN_OPTIONS, $options );
 		}
 
+		// We add a hidden field because the user id is not available on wpcf7_before_send_mail
+		add_filter( 'wpcf7_form_hidden_fields', array( __CLASS__, 'wpcf7_form_hidden_fields' ), 10, 1 );
+
+	}
+
+	/**
+	 * We add a hidden field because the user id is not available on wpcf7_before_send_mail
+	 * @param array $fields
+	 */
+	public static function wpcf7_form_hidden_fields( $fields ) {
+		$fields[AFF_CF7_CURRENT_USER_FIELD] = get_current_user_id();
+		return $fields;
 	}
 
 	/**
@@ -250,6 +262,10 @@ class Affiliates_CF7_Handler {
 		if ( $petition_form ) {
 			if ( is_user_logged_in() ) {
 				$user_id = get_current_user_id();
+				$affiliate_ids = affiliates_get_user_affiliate( $user_id );
+				$affiliate_id = array_shift( $affiliate_ids );
+			} else if ( isset( $posted_data[AFF_CF7_CURRENT_USER_FIELD] ) ) {
+				$user_id = intval( $posted_data[AFF_CF7_CURRENT_USER_FIELD]['value'] );
 				$affiliate_ids = affiliates_get_user_affiliate( $user_id );
 				$affiliate_id = array_shift( $affiliate_ids );
 			}
