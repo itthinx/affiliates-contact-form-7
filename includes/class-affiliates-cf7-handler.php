@@ -265,7 +265,7 @@ class Affiliates_CF7_Handler {
 				$affiliate_ids = affiliates_get_user_affiliate( $user_id );
 				$affiliate_id = array_shift( $affiliate_ids );
 			} else if ( isset( $posted_data[AFF_CF7_CURRENT_USER_FIELD] ) ) {
-				$user_id = intval( $posted_data[AFF_CF7_CURRENT_USER_FIELD]['value'] );
+				$user_id = intval( $posted_data[AFF_CF7_CURRENT_USER_FIELD] );
 				$affiliate_ids = affiliates_get_user_affiliate( $user_id );
 				$affiliate_id = array_shift( $affiliate_ids );
 			}
