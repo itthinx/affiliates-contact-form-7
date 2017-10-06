@@ -26,6 +26,7 @@
  * Version: 4.0.0
  * License: GPLv3
  */
+
 if ( !defined( 'AFF_CF7_PLUGIN_DOMAIN' ) ) {
 	define( 'AFF_CF7_PLUGIN_DOMAIN', 'affiliates-contact-form-7' );
 }
@@ -35,4 +36,4 @@ if ( !defined( 'AFF_CF7_CURRENT_USER_FIELD' ) ) {
 
 define( 'AFF_CF7_FILE', __FILE__ );
 
-include_once 'includes/class-affiliates-cf7.php';
+require_once 'includes/class-affiliates-cf7.php';

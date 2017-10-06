@@ -1,19 +1,19 @@
 <?php
 /**
  * affiliates-cf7-handler.php
- * 
+ *
  * Copyright (c) 2013 "kento" Karim Rahimpur www.itthinx.com
- * 
+ *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
- * 
+ *
  * This code is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * This header and all notices must be kept intact.
- * 
+ *
  * @author Karim Rahimpur
  * @package affiliates-contact-form-7
  * @since affiliates-contact-form-7 3.0.0
@@ -77,6 +77,7 @@ class Affiliates_CF7_Handler {
 
 	/**
 	 * We add a hidden field because the user id is not available on wpcf7_before_send_mail
+	 *
 	 * @param array $fields
 	 */
 	public static function wpcf7_form_hidden_fields( $fields ) {
@@ -87,7 +88,7 @@ class Affiliates_CF7_Handler {
 	/**
 	 * From CF7 3.9, this hook is called from WPCF7_Submission::mail(...) and
 	 * the parameter is NOT passed by reference.
-	 * 
+	 *
 	 * Before CF7 3.9, this hook is called from WPCF7_ContactForm::mail(...)
 	 * and the parameter passed by reference.
 	 *
@@ -151,10 +152,10 @@ class Affiliates_CF7_Handler {
 		}
 
 		$data = array();
-		foreach( $posted_data as $key => $value ) {
+		foreach ( $posted_data as $key => $value ) {
 			if ( key_exists( $key, $fields ) ) {
 				$v = '';
-				switch( $fields[$key]['type'] ) {
+				switch ( $fields[$key]['type'] ) {
 					case 'acceptance' :
 						break;
 
@@ -168,16 +169,16 @@ class Affiliates_CF7_Handler {
 					case 'select' :
 					case 'select*' :
 						if ( is_array( $value ) ) {
-							$v = implode( ", ", $value );
+							$v = implode( ', ', $value );
 						} else {
 							$v = $value;
 						}
 						break;
 
 					// Files are handled below
-					//case 'file' :
-					//case 'file*' :
-					//	break;
+					// case 'file' :
+					// case 'file*' :
+					// break;
 
 					case 'quiz' :
 						break;
@@ -211,7 +212,7 @@ class Affiliates_CF7_Handler {
 				// in the admin areas would be disastrous.
 				$data[$key] = array(
 					'title'  => $key,
-					'domain' => AFF_CF7_PLUGIN_DOMAIN,
+					'domain' => 'affiliates-contact-form-7',
 					'value'  => wp_strip_all_tags( $v ),
 				);
 			}
@@ -221,7 +222,7 @@ class Affiliates_CF7_Handler {
 			if ( key_exists( $key, $fields ) ) {
 				$data[$key] = array(
 					'title'  => $key,
-					'domain' => AFF_CF7_PLUGIN_DOMAIN,
+					'domain' => 'affiliates-contact-form-7',
 					'value'  => wp_strip_all_tags( basename( $value ) ), // better paranoia than disaster
 				);
 			}
@@ -242,12 +243,12 @@ class Affiliates_CF7_Handler {
 		// check form for value/currency?
 		if ( $use_form_base_amount ) {
 			if ( isset( $data['base-amount'] ) && isset( $data['base-amount']['value'] ) && is_numeric( $data['base-amount']['value'] ) ) {
-				$base_amount = bcadd( "0", $data['base-amount']['value'] );
+				$base_amount = bcadd( '0', $data['base-amount']['value'] );
 			}
 		}
 		if ( $use_form_amount ) {
 			if ( isset( $data['amount'] ) && isset( $data['amount']['value'] ) && is_numeric( $data['amount']['value'] ) ) {
-				$amount = bcadd( "0", $data['amount']['value'] );
+				$amount = bcadd( '0', $data['amount']['value'] );
 			}
 		}
 		if ( $use_form_currency ) {
