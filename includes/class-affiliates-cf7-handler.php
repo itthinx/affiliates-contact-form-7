@@ -19,6 +19,10 @@
  * @since affiliates-contact-form-7 3.0.0
  */
 
+if ( !defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Plugin main handler class.
  */

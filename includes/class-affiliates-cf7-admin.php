@@ -19,6 +19,10 @@
  * @since affiliates-contact-form-7 3.0.0
  */
 
+if ( !defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Plugin admin section.
  */
@@ -67,7 +71,7 @@ class Affiliates_CF7_Admin {
 		$output = '';
 
 		if ( !current_user_can( AFFILIATES_ADMINISTER_OPTIONS ) ) {
-			wp_die( wp_kses( __( 'Access denied.', 'affiliates-contact-form-7' ), array() ) );
+			wp_die( esc_html__( 'Access denied.', 'affiliates-contact-form-7' ) );
 		}
 
 		$options = get_option( Affiliates_CF7::PLUGIN_OPTIONS, array() );
@@ -172,113 +176,113 @@ class Affiliates_CF7_Admin {
 		echo
 		'<div>' .
 		'<h2>' .
-		wp_kses( __( 'Contact Form 7 Integration Settings', 'affiliates-contact-form-7' ), array() ) .
+		esc_html__( 'Contact Form 7 Integration Settings', 'affiliates-contact-form-7' ) .
 		'</h2>' .
 		'</div>';
 
 		echo '<form action="" name="options" method="post">';
 		echo '<div>';
 
-		echo '<h3>' . wp_kses( __( 'Forms', 'affiliates-contact-form-7' ), array() ) . '</h3>';
-		echo '<p class="description">' . wp_kses( __( 'By default, form submissions on all Contact Form 7 forms will originate referrals.', 'affiliates-contact-form-7' ), array() ) . '</p>';
-		echo '<p class="description">' . wp_kses( __( 'If you only want specific forms to originate referrals, or if you want to exclude some forms from originating referrals, input their form ids in the fields below.', 'affiliates-contact-form-7' ), array() ) . '</p>';
+		echo '<h3>' . esc_html__( 'Forms', 'affiliates-contact-form-7' ) . '</h3>';
+		echo '<p class="description">' . esc_html__( 'By default, form submissions on all Contact Form 7 forms will originate referrals.', 'affiliates-contact-form-7' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'If you only want specific forms to originate referrals, or if you want to exclude some forms from originating referrals, input their form ids in the fields below.', 'affiliates-contact-form-7' ) . '</p>';
 		echo '<p class="description">' . wp_kses( __( 'The id of a form is the <b>X</b> that can be found in the Contact Form 7 shortcode [contact-form-7 id="<b>X</b>" title="Form title"]', 'affiliates-contact-form-7' ), array( 'b' => array() ) ) . '</p>';
-		echo '<p class="description">' . wp_kses( __( 'Separate form ids by comma.', 'affiliates-contact-form-7' ), array() ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Separate form ids by comma.', 'affiliates-contact-form-7' ) . '</p>';
 
-		echo '<h4>' . wp_kses( __( 'Included forms', 'affiliates-contact-form-7' ), array() ) . '</h4>';
+		echo '<h4>' . esc_html__( 'Included forms', 'affiliates-contact-form-7' ) . '</h4>';
 		echo '<p>';
 		echo '<label>';
-		echo wp_kses( __( 'Included form ids', 'affiliates-contact-form-7' ), array() );
+		echo esc_html__( 'Included form ids', 'affiliates-contact-form-7' );
 		echo ' ';
-		echo '<input style="width:40em" name="' . wp_kses( Affiliates_CF7::INCLUDED_FORMS, array() ) . '" type="text" value="' . esc_attr( implode( ',', $included_forms ) ) . '" />';
+		echo '<input style="width:40em" name="' . esc_html( Affiliates_CF7::INCLUDED_FORMS ) . '" type="text" value="' . esc_attr( implode( ',', $included_forms ) ) . '" />';
 		echo '</label>';
 		echo '</p>';
 
-		echo '<h4>' . wp_kses( __( 'Excluded forms', 'affiliates-contact-form-7' ), array() ) . '</h4>';
+		echo '<h4>' . esc_html__( 'Excluded forms', 'affiliates-contact-form-7' ) . '</h4>';
 		echo '<p>';
 		echo '<label>';
-		echo wp_kses( __( 'Excluded form ids', 'affiliates-contact-form-7' ), array() );
+		echo esc_html__( 'Excluded form ids', 'affiliates-contact-form-7' );
 		echo ' ';
-		echo '<input style="width:40em" name="' . wp_kses( Affiliates_CF7::EXCLUDED_FORMS, array() ) . '" type="text" value="' . esc_attr( implode( ',', $excluded_forms ) ) . '" />';
+		echo '<input style="width:40em" name="' . esc_html( Affiliates_CF7::EXCLUDED_FORMS ) . '" type="text" value="' . esc_attr( implode( ',', $excluded_forms ) ) . '" />';
 		echo '</label>';
 		echo '</p>';
 
-		echo '<h4>' . wp_kses( __( 'Petition forms', 'affiliates-contact-form-7' ), array() ) . '</h4>';
+		echo '<h4>' . esc_html__( 'Petition forms', 'affiliates-contact-form-7' ) . '</h4>';
 		echo '<p>';
 		echo '<label>';
-		echo wp_kses( __( 'Petition form ids', 'affiliates-contact-form-7' ), array() );
+		echo esc_html__( 'Petition form ids', 'affiliates-contact-form-7' );
 		echo ' ';
-		echo '<input style="width:40em" name="' . wp_kses( Affiliates_CF7::PETITION_FORMS, array() ) . '" type="text" value="' . esc_attr( implode( ',', $petition_forms ) ) . '" />';
+		echo '<input style="width:40em" name="' . esc_html( Affiliates_CF7::PETITION_FORMS ) . '" type="text" value="' . esc_attr( implode( ',', $petition_forms ) ) . '" />';
 		echo '</label>';
 		echo '</p>';
 		echo '<p class="description">';
-		echo wp_kses( __( 'Petition forms allow affiliates to submit referrals directly. Include form ids of those forms which should credit referrals directly to the affiliate who submits the form.', 'affiliates-contact-form-7' ), array() );
+		echo esc_html__( 'Petition forms allow affiliates to submit referrals directly. Include form ids of those forms which should credit referrals directly to the affiliate who submits the form.', 'affiliates-contact-form-7' );
 		echo '</p>';
 
-		echo '<h3>' . wp_kses( __( 'Referral Rate', 'affiliates-contact-form-7' ), array() ) . '</h3>';
+		echo '<h3>' . esc_html__( 'Referral Rate', 'affiliates-contact-form-7' ) . '</h3>';
 		if ( class_exists( 'Affiliates_Referral' ) ) {
 			echo '<p>';
 			echo wp_kses( __( 'The referral rate settings are as determined in <strong>Affiliates > Settings</strong>.', 'affiliates-contact-form-7' ), array( 'strong' => array() ) );
 			echo '</p>';
 		} else {
 			echo '<p>';
-			echo '<label for="' . wp_kses( Affiliates_CF7::REFERRAL_RATE, array() ) . '">' . wp_kses( __( 'Referral rate', 'affiliates-contact-form-7' ), array() ) . '</label>';
+			echo '<label for="' . esc_html( Affiliates_CF7::REFERRAL_RATE ) . '">' . esc_html__( 'Referral rate', 'affiliates-contact-form-7' ) . '</label>';
 			echo '&nbsp;';
-			echo '<input name="' . wp_kses( Affiliates_CF7::REFERRAL_RATE, array() ) . '" type="text" value="' . esc_attr( $referral_rate ) . '"/>';
+			echo '<input name="' . esc_html( Affiliates_CF7::REFERRAL_RATE ) . '" type="text" value="' . esc_attr( $referral_rate ) . '"/>';
 			echo '</p>';
 			echo '<p>';
-			echo wp_kses( __( 'The referral rate determines the referral amount (or commission) calculated from the base amount.', 'affiliates-contact-form-7' ), array() );
+			echo esc_html__( 'The referral rate determines the referral amount (or commission) calculated from the base amount.', 'affiliates-contact-form-7' );
 			echo '</p>';
 			echo '<p class="description">';
 			echo wp_kses( __( 'Example: Set the referral rate to <strong>0.1</strong> if you want your affiliates to get a <strong>10%</strong> commission on each referral.', 'affiliates-contact-form-7' ), array( 'strong' => array() ) );
 			echo '</p>';
 		}
 
-		echo '<h3>' . wp_kses( __( 'Referral amount and currency', 'affiliates-contact-form-7' ), array() ) . '</h3>';
+		echo '<h3>' . esc_html__( 'Referral amount and currency', 'affiliates-contact-form-7' ) . '</h3>';
 
-		echo '<h4>' . wp_kses( __( 'Default currency', 'affiliates-contact-form-7' ), array() ) . '</h4>';
+		echo '<h4>' . esc_html__( 'Default currency', 'affiliates-contact-form-7' ) . '</h4>';
 		echo '<p>';
-		echo '<label>' . wp_kses( __( 'Currency', 'affiliates-contact-form-7' ), array() ) . '</label>';
+		echo '<label>' . esc_html__( 'Currency', 'affiliates-contact-form-7' ) . '</label>';
 		echo ' ';
-		echo '<select name="' . wp_kses( Affiliates_CF7::CURRENCY, array() ) . '">';
+		echo '<select name="' . esc_html( Affiliates_CF7::CURRENCY ) . '">';
 		foreach ( Affiliates_CF7::$supported_currencies as $cid ) {
 			$selected = ( $currency == $cid ) ? ' selected="selected" ' : '';
-			echo '<option ' . wp_kses( $selected, array() ) . ' value="' . esc_attr( $cid ) . '">' . wp_kses( $cid, array() ) . '</option>';
+			echo '<option ' . esc_html( $selected ) . ' value="' . esc_attr( $cid ) . '">' . esc_html( $cid ) . '</option>';
 		}
 		echo '</select>';
 		echo '</p>';
 
-		echo '<h4>' . wp_kses( __( 'Form amount (base)', 'affiliates-contact-form-7' ), array() ) . '</h4>';
+		echo '<h4>' . esc_html__( 'Form amount (base)', 'affiliates-contact-form-7' ) . '</h4>';
 		echo '<p>';
 		echo '<label>';
-		echo '<input name="' . wp_kses( Affiliates_CF7::USE_FORM_BASE_AMOUNT, array() ) . '" type="checkbox" ' . ( $use_form_base_amount ? ' checked="checked" ' : '' ) . ' />';
+		echo '<input name="' . esc_html( Affiliates_CF7::USE_FORM_BASE_AMOUNT ) . '" type="checkbox" ' . ( $use_form_base_amount ? ' checked="checked" ' : '' ) . ' />';
 		echo ' ';
 		echo wp_kses( __( "Use the amount provided by the form's <b>base-amount</b> field.", 'affiliates-contact-form-7' ), array( 'b' => array() ) );
 		echo '</label>';
 		echo '</p>';
 		echo '<p class="description">' . wp_kses( __( 'This will assign a referral amount (commission) resulting from the calculation based on the form field named <b>base-amount</b>.', 'affiliates-contact-form-7' ), array( 'b' => array() ) ) . '</p>';
 
-		echo '<h4>' . wp_kses( __( 'Form amount (fixed)', 'affiliates-contact-form-7' ), array() ) . '</h4>';
+		echo '<h4>' . esc_html__( 'Form amount (fixed)', 'affiliates-contact-form-7' ) . '</h4>';
 		echo '<p>';
 		echo '<label>';
-		echo '<input name="' . wp_kses( Affiliates_CF7::USE_FORM_AMOUNT, array() ) . '" type="checkbox" ' . ( $use_form_amount ? ' checked="checked" ' : '' ) . ' />';
+		echo '<input name="' . esc_html( Affiliates_CF7::USE_FORM_AMOUNT ) . '" type="checkbox" ' . ( $use_form_amount ? ' checked="checked" ' : '' ) . ' />';
 		echo ' ';
 		echo wp_kses( __( "Use the amount provided by the form's <b>amount</b> field.", 'affiliates-contact-form-7' ), array( 'b' => array() ) );
 		echo '</label>';
 		echo '</p>';
 		echo '<p class="description">' . wp_kses( __( 'If you want to have the referral amount provided through a form, add a field to your form named <b>amount</b>.', 'affiliates-contact-form-7' ), array( 'b' => array() ) ) . '</p>';
 
-		echo '<h4>' . wp_kses( __( 'Form currency', 'affiliates-contact-form-7' ), array() ) . '</h4>';
+		echo '<h4>' . esc_html__( 'Form currency', 'affiliates-contact-form-7' ) . '</h4>';
 		echo '<p>';
 		echo '<label>';
-		echo '<input name="' . wp_kses( Affiliates_CF7::USE_FORM_CURRENCY, array() ) . '" type="checkbox" ' . ( $use_form_currency ? ' checked="checked" ' : '' ) . ' />';
+		echo '<input name="' . esc_html( Affiliates_CF7::USE_FORM_CURRENCY ) . '" type="checkbox" ' . ( $use_form_currency ? ' checked="checked" ' : '' ) . ' />';
 		echo ' ';
 		echo wp_kses( __( 'Use the currency code provided by the form\'s <b>currency</b> field.', 'affiliates-contact-form-7' ), array( 'b' => array() ) );
 		echo '</label>';
 		echo '</p>';
 		echo '<p class="description">' . wp_kses( __( 'If you want to have the referral in a currency other than the default currency, add a field to your form named <b>currency</b>. The value of that field must be a three-letter currency code of those selectable for the default currency.', 'affiliates-contact-form-7' ), array( 'b' => array() ) ) . '</p>';
 
-		echo '<h3>' . wp_kses( __( 'Notifications', 'affiliates-contact-form-7' ), array() ) . '</h3>';
+		echo '<h3>' . esc_html__( 'Notifications', 'affiliates-contact-form-7' ) . '</h3>';
 
 		if ( !class_exists( 'Affiliates_Notifications' ) ) {
 			echo '<p class="">';
@@ -341,30 +345,30 @@ class Affiliates_CF7_Admin {
 			echo wp_kses( __( 'For example, assuming you have a text field in your form named <b>your-name</b> and the field is represented by the code <b>[text your-name]</b> in your form, you can use <b>[your-name]</b> in the notification email subject and message body.', 'affiliates-contact-form-7' ), array( 'b' => array() ) );
 			echo '</p>';
 			echo '<p>';
-			echo wp_kses( __( 'Text form fields and the values submitted through fields of other types (e.g. checkbox, select, ...) are represented in a consistent manner when supported.', 'affiliates-contact-form-7' ), array() );
+			echo esc_html__( 'Text form fields and the values submitted through fields of other types (e.g. checkbox, select, ...) are represented in a consistent manner when supported.', 'affiliates-contact-form-7' );
 			echo '</p>';
 		}
 
-		echo '<h3>' . wp_kses( __( 'Usage stats', 'affiliates-contact-form-7' ), array() ) . '</h3>';
+		echo '<h3>' . esc_html__( 'Usage stats', 'affiliates-contact-form-7' ) . '</h3>';
 		echo '<p>';
 		echo '<label>';
-		echo '<input name="' . wp_kses( Affiliates_CF7::USAGE_STATS, array() ) . '" type="checkbox" ' . ( $usage_stats ? ' checked="checked" ' : '' ) . '/>';
+		echo '<input name="' . esc_html( Affiliates_CF7::USAGE_STATS ) . '" type="checkbox" ' . ( $usage_stats ? ' checked="checked" ' : '' ) . '/>';
 		echo ' ';
-		echo wp_kses( __( 'Allow the plugin to provide usage stats.', 'affiliates-contact-form-7' ), array() );
+		echo esc_html__( 'Allow the plugin to provide usage stats.', 'affiliates-contact-form-7' );
 		echo '</label>';
 		echo '</p>';
-		echo '<p class="description">' . wp_kses( __( 'This will allow the plugin to help in computing how many installations are actually using it. No personal or site data is transmitted, this simply embeds an icon on the bottom of the Affiliates admin pages, so that the number of visits to these can be counted. This is useful to help prioritize development.', 'affiliates-contact-form-7' ), array() ) . '</span>';
+		echo '<p class="description">' . esc_html__( 'This will allow the plugin to help in computing how many installations are actually using it. No personal or site data is transmitted, this simply embeds an icon on the bottom of the Affiliates admin pages, so that the number of visits to these can be counted. This is useful to help prioritize development.', 'affiliates-contact-form-7' ) . '</span>';
 		echo '</p>';
 
 		echo '<p>';
 		echo wp_nonce_field( self::SET_ADMIN_OPTIONS, self::NONCE, true, false );
-		echo '<input type="submit" name="submit" value="' . wp_kses( __( 'Save', 'affiliates-contact-form-7' ), array() ) . '" class="button button-primary" />';
+		echo '<input type="submit" name="submit" value="' . esc_html__( 'Save', 'affiliates-contact-form-7' ) . '" class="button button-primary" />';
 		echo '</p>';
 
 		echo '</div>';
 		echo '</form>';
 
-		affiliates_footer();
+		affiliates_footer( '' );
 	}
 
 	/**
@@ -375,15 +379,17 @@ class Affiliates_CF7_Admin {
 	public static function affiliates_footer( $footer ) {
 		$options = get_option( Affiliates_CF7::PLUGIN_OPTIONS , array() );
 		$usage_stats   = isset( $options[Affiliates_CF7::USAGE_STATS] ) ? $options[Affiliates_CF7::USAGE_STATS] : Affiliates_CF7::USAGE_STATS_DEFAULT;
-		return
-			'<div style="font-size:0.9em">' .
-			'<p>' .
-			( $usage_stats ? "<img src='http://www.itthinx.com/img/affiliates-contact-form-7/affiliates-contact-form-7.png' alt=''/>" : '' ) .
-			__( "Powered by <a href='http://www.itthinx.com/plugins/affiliates-contact-form-7' target='_blank'>Affiliates Contact Form 7 Integration</a>.", 'affiliates-contact-form-7' ) .
-			( !class_exists( 'Affiliates_Attributes' ) ? ' ' . __( 'Get additional features with <a href="http://www.itthinx.com/plugins/affiliates-pro/" target="_blank">Affiliates Pro</a>.', 'affiliates-contact-form-7' ) : '' ) .
-			'</p>' .
-			'</div>' .
-			$footer;
+		echo wp_kses( '<div style="font-size:0.9em">', array( 'div' => array( 'style' => array() ) ) );
+		echo wp_kses( '<p>', array( 'p' => array() ) );
+		$image_html = $usage_stats ? "<img src='http://www.itthinx.com/img/affiliates-contact-form-7/affiliates-contact-form-7.png' alt=''/>" : '';
+		echo wp_kses( $image_html, array( 'img' => array( 'src' => array(), 'alt' => array() ) ) );
+		echo wp_kses( __( "Powered by <a href='http://www.itthinx.com/plugins/affiliates-contact-form-7' target='_blank'>Affiliates Contact Form 7 Integration</a>.", 'affiliates-contact-form-7' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) );
+		if ( !class_exists( 'Affiliates_Attributes' ) ) {
+			echo ' ';
+			echo wp_kses( __( 'Get additional features with <a href="http://www.itthinx.com/plugins/affiliates-pro/" target="_blank">Affiliates Pro</a>.', 'affiliates-contact-form-7' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) );
+		}
+		echo wp_kses( '</p>', array( 'p' => array() ) );
+		echo wp_kses( '</div>', array( 'div' => array() ) );
 	}
 
 }
