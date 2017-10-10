@@ -27,6 +27,10 @@
  * License: GPLv3
  */
 
+if ( !defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( !defined( 'AFF_CF7_PLUGIN_DOMAIN' ) ) {
 	define( 'AFF_CF7_PLUGIN_DOMAIN', 'affiliates-contact-form-7' );
 }

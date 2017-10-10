@@ -194,7 +194,7 @@ class Affiliates_CF7_Admin {
 		echo '<label>';
 		echo esc_html__( 'Included form ids', 'affiliates-contact-form-7' );
 		echo ' ';
-		echo '<input style="width:40em" name="' . esc_html( Affiliates_CF7::INCLUDED_FORMS ) . '" type="text" value="' . esc_attr( implode( ',', $included_forms ) ) . '" />';
+		echo '<input style="width:40em" name="' . esc_attr( Affiliates_CF7::INCLUDED_FORMS ) . '" type="text" value="' . esc_attr( implode( ',', $included_forms ) ) . '" />';
 		echo '</label>';
 		echo '</p>';
 
@@ -203,7 +203,7 @@ class Affiliates_CF7_Admin {
 		echo '<label>';
 		echo esc_html__( 'Excluded form ids', 'affiliates-contact-form-7' );
 		echo ' ';
-		echo '<input style="width:40em" name="' . esc_html( Affiliates_CF7::EXCLUDED_FORMS ) . '" type="text" value="' . esc_attr( implode( ',', $excluded_forms ) ) . '" />';
+		echo '<input style="width:40em" name="' . esc_attr( Affiliates_CF7::EXCLUDED_FORMS ) . '" type="text" value="' . esc_attr( implode( ',', $excluded_forms ) ) . '" />';
 		echo '</label>';
 		echo '</p>';
 
@@ -212,7 +212,7 @@ class Affiliates_CF7_Admin {
 		echo '<label>';
 		echo esc_html__( 'Petition form ids', 'affiliates-contact-form-7' );
 		echo ' ';
-		echo '<input style="width:40em" name="' . esc_html( Affiliates_CF7::PETITION_FORMS ) . '" type="text" value="' . esc_attr( implode( ',', $petition_forms ) ) . '" />';
+		echo '<input style="width:40em" name="' . esc_attr( Affiliates_CF7::PETITION_FORMS ) . '" type="text" value="' . esc_attr( implode( ',', $petition_forms ) ) . '" />';
 		echo '</label>';
 		echo '</p>';
 		echo '<p class="description">';
@@ -226,9 +226,9 @@ class Affiliates_CF7_Admin {
 			echo '</p>';
 		} else {
 			echo '<p>';
-			echo '<label for="' . esc_html( Affiliates_CF7::REFERRAL_RATE ) . '">' . esc_html__( 'Referral rate', 'affiliates-contact-form-7' ) . '</label>';
+			echo '<label for="' . esc_attr( Affiliates_CF7::REFERRAL_RATE ) . '">' . esc_html__( 'Referral rate', 'affiliates-contact-form-7' ) . '</label>';
 			echo '&nbsp;';
-			echo '<input name="' . esc_html( Affiliates_CF7::REFERRAL_RATE ) . '" type="text" value="' . esc_attr( $referral_rate ) . '"/>';
+			echo '<input name="' . esc_attr( Affiliates_CF7::REFERRAL_RATE ) . '" type="text" value="' . esc_attr( $referral_rate ) . '"/>';
 			echo '</p>';
 			echo '<p>';
 			echo esc_html__( 'The referral rate determines the referral amount (or commission) calculated from the base amount.', 'affiliates-contact-form-7' );
@@ -244,10 +244,10 @@ class Affiliates_CF7_Admin {
 		echo '<p>';
 		echo '<label>' . esc_html__( 'Currency', 'affiliates-contact-form-7' ) . '</label>';
 		echo ' ';
-		echo '<select name="' . esc_html( Affiliates_CF7::CURRENCY ) . '">';
+		echo '<select name="' . esc_attr( Affiliates_CF7::CURRENCY ) . '">';
 		foreach ( Affiliates_CF7::$supported_currencies as $cid ) {
 			$selected = ( $currency == $cid ) ? ' selected="selected" ' : '';
-			echo '<option ' . esc_html( $selected ) . ' value="' . esc_attr( $cid ) . '">' . esc_html( $cid ) . '</option>';
+			echo '<option ' . esc_html( $selected ) . ' value="' . esc_attr( $cid ) . '">' . esc_attr( $cid ) . '</option>';
 		}
 		echo '</select>';
 		echo '</p>';
@@ -255,7 +255,7 @@ class Affiliates_CF7_Admin {
 		echo '<h4>' . esc_html__( 'Form amount (base)', 'affiliates-contact-form-7' ) . '</h4>';
 		echo '<p>';
 		echo '<label>';
-		echo '<input name="' . esc_html( Affiliates_CF7::USE_FORM_BASE_AMOUNT ) . '" type="checkbox" ' . ( $use_form_base_amount ? ' checked="checked" ' : '' ) . ' />';
+		echo '<input name="' . esc_attr( Affiliates_CF7::USE_FORM_BASE_AMOUNT ) . '" type="checkbox" ' . ( $use_form_base_amount ? ' checked="checked" ' : '' ) . ' />';
 		echo ' ';
 		echo wp_kses( __( "Use the amount provided by the form's <b>base-amount</b> field.", 'affiliates-contact-form-7' ), array( 'b' => array() ) );
 		echo '</label>';
@@ -265,7 +265,7 @@ class Affiliates_CF7_Admin {
 		echo '<h4>' . esc_html__( 'Form amount (fixed)', 'affiliates-contact-form-7' ) . '</h4>';
 		echo '<p>';
 		echo '<label>';
-		echo '<input name="' . esc_html( Affiliates_CF7::USE_FORM_AMOUNT ) . '" type="checkbox" ' . ( $use_form_amount ? ' checked="checked" ' : '' ) . ' />';
+		echo '<input name="' . esc_attr( Affiliates_CF7::USE_FORM_AMOUNT ) . '" type="checkbox" ' . ( $use_form_amount ? ' checked="checked" ' : '' ) . ' />';
 		echo ' ';
 		echo wp_kses( __( "Use the amount provided by the form's <b>amount</b> field.", 'affiliates-contact-form-7' ), array( 'b' => array() ) );
 		echo '</label>';
@@ -275,7 +275,7 @@ class Affiliates_CF7_Admin {
 		echo '<h4>' . esc_html__( 'Form currency', 'affiliates-contact-form-7' ) . '</h4>';
 		echo '<p>';
 		echo '<label>';
-		echo '<input name="' . esc_html( Affiliates_CF7::USE_FORM_CURRENCY ) . '" type="checkbox" ' . ( $use_form_currency ? ' checked="checked" ' : '' ) . ' />';
+		echo '<input name="' . esc_attr( Affiliates_CF7::USE_FORM_CURRENCY ) . '" type="checkbox" ' . ( $use_form_currency ? ' checked="checked" ' : '' ) . ' />';
 		echo ' ';
 		echo wp_kses( __( 'Use the currency code provided by the form\'s <b>currency</b> field.', 'affiliates-contact-form-7' ), array( 'b' => array() ) );
 		echo '</label>';
@@ -352,7 +352,7 @@ class Affiliates_CF7_Admin {
 		echo '<h3>' . esc_html__( 'Usage stats', 'affiliates-contact-form-7' ) . '</h3>';
 		echo '<p>';
 		echo '<label>';
-		echo '<input name="' . esc_html( Affiliates_CF7::USAGE_STATS ) . '" type="checkbox" ' . ( $usage_stats ? ' checked="checked" ' : '' ) . '/>';
+		echo '<input name="' . esc_attr( Affiliates_CF7::USAGE_STATS ) . '" type="checkbox" ' . ( $usage_stats ? ' checked="checked" ' : '' ) . '/>';
 		echo ' ';
 		echo esc_html__( 'Allow the plugin to provide usage stats.', 'affiliates-contact-form-7' );
 		echo '</label>';
@@ -362,7 +362,7 @@ class Affiliates_CF7_Admin {
 
 		echo '<p>';
 		echo wp_nonce_field( self::SET_ADMIN_OPTIONS, self::NONCE, true, false );
-		echo '<input type="submit" name="submit" value="' . esc_html__( 'Save', 'affiliates-contact-form-7' ) . '" class="button button-primary" />';
+		echo '<input type="submit" name="submit" value="' . esc_attr__( 'Save', 'affiliates-contact-form-7' ) . '" class="button button-primary" />';
 		echo '</p>';
 
 		echo '</div>';

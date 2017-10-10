@@ -163,7 +163,6 @@ class Affiliates_CF7 {
 					'br'     => array(),
 					'div'    => array( 'class' => array() ),
 					'em'     => array(),
-					'id'     => array(),
 					'p'      => array( 'class' => array() ),
 					'strong' => array()
 				));
