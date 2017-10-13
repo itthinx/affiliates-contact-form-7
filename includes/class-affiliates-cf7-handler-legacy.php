@@ -32,7 +32,6 @@ class Affiliates_CF7_Handler {
 	 * Adds the proper initialization action on the wp_init hook.
 	 */
 	public static function init() {
-
 		Affiliates_CF7::$supported_currencies = apply_filters( 'affiliates_cf7_currencies', AFFILIATES_CF7::$supported_currencies );
 		sort( Affiliates_CF7::$supported_currencies );
 
@@ -237,7 +236,25 @@ class Affiliates_CF7_Handler {
 		$use_form_base_amount = isset( $options[Affiliates_CF7::USE_FORM_BASE_AMOUNT] ) ? $options[Affiliates_CF7::USE_FORM_BASE_AMOUNT] : Affiliates_CF7::DEFAULT_USE_FORM_BASE_AMOUNT;
 		$use_form_currency    = isset( $options[Affiliates_CF7::USE_FORM_CURRENCY] ) ? $options[Affiliates_CF7::USE_FORM_CURRENCY] : Affiliates_CF7::DEFAULT_USE_FORM_CURRENCY;
 
-		$affiliate_ids = null;
+		// check form for value/currency?
+		if ( $use_form_base_amount ) {
+			if ( isset( $data['base-amount'] ) && isset( $data['base-amount']['value'] ) && is_numeric( $data['base-amount']['value'] ) ) {
+				$base_amount = bcadd( '0', $data['base-amount']['value'] );
+			}
+		}
+		if ( $use_form_amount ) {
+			if ( isset( $data['amount'] ) && isset( $data['amount']['value'] ) && is_numeric( $data['amount']['value'] ) ) {
+				$amount = bcadd( '0', $data['amount']['value'] );
+			}
+		}
+		if ( $use_form_currency ) {
+			if ( isset( $data['currency'] ) && isset( $data['currency']['value'] ) ) {
+				if ( in_array( $data['currency']['value'], Affiliates_CF7::$supported_currencies ) ) {
+					$currency = $data['currency']['value'];
+				}
+			}
+		}
+
 		$affiliate_id = null;
 		if ( $petition_form ) {
 			if ( is_user_logged_in() ) {
@@ -262,101 +279,26 @@ class Affiliates_CF7_Handler {
 			}
 		}
 
-		// Using Affiliates 3.x API
-		$referrer_params = array();
-		$rc = new Affiliates_Referral_Controller();
-		if ( $affiliate_ids !== null ) {
-			foreach ( $affiliate_ids as $affiliate_id ) {
-				$referrer_params[] = array( 'affiliate_id' => $affiliate_id );
+		if ( class_exists( 'Affiliates_Referral_WordPress' ) ) {
+			$r = new Affiliates_Referral_WordPress();
+			if ( !$affiliate_id ) {
+				$affiliate_id = $r->evaluate( $post_id, $description, $data, $base_amount, $amount, $currency, null, Affiliates_CF7::REFERRAL_TYPE );
+			} else {
+				$r->add_referrals( array( $affiliate_id ), $post_id, $description, $data, $base_amount, $amount, $currency, null, Affiliates_CF7::REFERRAL_TYPE );
 			}
 		} else {
-			if ( $params = $rc->evaluate_referrer() ) {
-				$referrer_params[] = $params;
+			$options = get_option( Affiliates_CF7::PLUGIN_OPTIONS , array() );
+			$referral_rate  = isset( $options[Affiliates_CF7::REFERRAL_RATE] ) ? $options[Affiliates_CF7::REFERRAL_RATE] : Affiliates_CF7::REFERRAL_RATE_DEFAULT;
+			if ( $base_amount !== null ) {
+				$amount = round( floatval( $referral_rate ) * floatval( $base_amount ), AFFILIATES_REFERRAL_AMOUNT_DECIMALS );
+			}
+			if ( !$affiliate_id ) {
+				$affiliate_id = affiliates_suggest_referral( $post_id, $description, $data, $amount, $currency, null, Affiliates_CF7::REFERRAL_TYPE );
+			} else {
+				affiliates_add_referral( $affiliate_id, $post_id, $description, $data, $amount, $currency, null, Affiliates_CF7::REFERRAL_TYPE );
 			}
 		}
-		$n = count( $referrer_params );
-		if ( $n > 0 ) {
-			foreach ( $referrer_params as $params ) {
-				$affiliate_id = $params['affiliate_id'];
-				$group_ids = null;
-				if ( class_exists( 'Groups_User' ) ) {
-					if ( $affiliate_user_id = affiliates_get_affiliate_user( $affiliate_id ) ) {
-						$groups_user = new Groups_User( $affiliate_user_id );
-						$group_ids = $groups_user->group_ids_deep;
-						if ( !is_array( $group_ids ) || ( count( $group_ids ) === 0 ) ) {
-							$group_ids = null;
-						}
-					}
-				}
-				$referral_items = array();
-				if ( $rate = $rc->seek_rate( array(
-					'affiliate_id' => $affiliate_id,
-					'object_id'    => $form_id,
-					'term_ids'     => null,
-					'integration'  => 'affiliates-contact-form-7',
-					'group_ids'    => $group_ids
-				) ) ) {
-					$rate_id = $rate->rate_id;
-					$type = 'wpcf7_contact_form';
 
-					switch ( $rate->type ) {
-						case AFFILIATES_PRO_RATES_TYPE_AMOUNT :
-							$amount = bcadd( '0', $rate->value, affiliates_get_referral_amount_decimals() );
-							break;
-						case AFFILIATES_PRO_RATES_TYPE_RATE :
-							// check form for base_amount
-							
-							// @todo @karim is this correct ????
-							if ( $use_form_base_amount ) {
-								if ( isset( $data['base-amount'] ) && isset( $data['base-amount']['value'] ) && is_numeric( $data['base-amount']['value'] ) ) {
-									$amount = bcadd( '0', $data['base-amount']['value'] );
-								}
-							}
-							$amount = bcmul( $amount, $rate->value, affiliates_get_referral_amount_decimals() );
-							break;
-					}
-					// split proportional total if multiple affiliates are involved
-					if ( $n > 1 ) {
-						$amount = bcdiv( $amount, $n, affiliates_get_referral_amount_decimals() );
-					}
-
-					if ( $use_form_amount ) {
-						if ( isset( $data['amount'] ) && isset( $data['amount']['value'] ) && is_numeric( $data['amount']['value'] ) ) {
-							$amount = bcadd( '0', $data['amount']['value'] );
-						}
-					}
-					if ( $use_form_currency ) {
-						if ( isset( $data['currency'] ) && isset( $data['currency']['value'] ) ) {
-							if ( in_array( $data['currency']['value'], Affiliates_CF7::$supported_currencies ) ) {
-								$currency = $data['currency']['value'];
-							}
-						}
-					}
-
-					$referral_item = new Affiliates_Referral_Item( array(
-						'rate_id'     => $rate_id,
-						'amount'      => $amount,
-						'currency_id' => $currency,
-						'type'        => $type,
-						'reference'   => $form_id,
-						'line_amount' => $amount,
-						'object_id'   => $form_id
-					) );
-					$referral_items[] = $referral_item;
-				}
-				$params['post_id']          = $post_id;
-				$params['description']      = $description;
-				$params['data']             = $data;
-				$params['currency_id']      = $currency;
-				$params['type']             = 'sale';
-				$params['referral_items']   = $referral_items;
-				$params['reference']        = $form_id;
-				$params['reference_amount'] = $amount;
-				$params['integration']      = 'affiliates-contact-form-7';
-
-				$rc->add_referral( $params );
-			}
-		}
 	}
 }
 Affiliates_CF7_Handler::init();

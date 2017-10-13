@@ -175,11 +175,32 @@ class Affiliates_CF7 {
 	 */
 	public static function init() {
 		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
+
+		add_action( 'init', array( __CLASS__, 'wp_init' ) );
+
+		if ( is_admin() ) {
+			include_once 'class-affiliates-cf7-admin.php';
+		}
+	}
+
+	/**
+	 * Loads classes.
+	 */
+	public static function wp_init() {
 		if ( self::check_dependencies() ) {
 			register_activation_hook( __FILE__, array( __CLASS__, 'activate' ) );
-			include_once 'class-affiliates-cf7-handler.php';
-			if ( is_admin() ) {
-				include_once 'class-affiliates-cf7-admin.php';
+			if (
+				defined( 'AFFILIATES_EXT_VERSION' ) &&
+				version_compare( AFFILIATES_EXT_VERSION, '3.0.0' ) >= 0 &&
+				class_exists( 'Affiliates_Referral' ) &&
+				(
+					!defined( 'Affiliates_Referral::DEFAULT_REFERRAL_CALCULATION_KEY' ) ||
+					!get_option( Affiliates_Referral::DEFAULT_REFERRAL_CALCULATION_KEY, null )
+				)
+			) {
+				include_once 'class-affiliates-cf7-handler.php';
+			} else {
+				include_once 'class-affiliates-cf7-handler-legacy.php';
 			}
 		}
 	}
