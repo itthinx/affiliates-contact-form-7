@@ -1,8 +1,8 @@
 <?php
 /**
- * affiliates-cf7-handler.php
+ * affiliates-cf7-handler-legacy.php
  *
- * Copyright (c) 2013 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2013-2017 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -16,7 +16,7 @@
  *
  * @author Karim Rahimpur
  * @package affiliates-contact-form-7
- * @since affiliates-contact-form-7 3.0.0
+ * @since affiliates-contact-form-7 4.0.0
  */
 
 if ( !defined( 'ABSPATH' ) ) {

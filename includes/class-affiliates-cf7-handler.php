@@ -2,7 +2,7 @@
 /**
  * affiliates-cf7-handler.php
  *
- * Copyright (c) 2013 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2013-2017 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -305,8 +305,6 @@ class Affiliates_CF7_Handler {
 							break;
 						case AFFILIATES_PRO_RATES_TYPE_RATE :
 							// check form for base_amount
-							
-							// @todo @karim is this correct ????
 							if ( $use_form_base_amount ) {
 								if ( isset( $data['base-amount'] ) && isset( $data['base-amount']['value'] ) && is_numeric( $data['base-amount']['value'] ) ) {
 									$amount = bcadd( '0', $data['base-amount']['value'] );
