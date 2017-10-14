@@ -59,13 +59,13 @@ Sales and support teams can use Affiliates Pro for Contact Form 7 to delegate sa
 
 Install these, set up your forms, set up your own affiliate program and start gathering new leads!
 
-** Documentation **
+**Documentation**
 
 - Documentation page for Affiliates [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates/setup/settings/integrations/contact-form-7/)
 - Documentation page for Affiliates Pro [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates-pro/setup/settings/integrations/contact-form-7/)
 - Documentation page for Affiliates Enterprise [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates-enterprise/setup/settings/integrations/contact-form-7/)
 
-** Feedback **
+**Feedback**
 
 __Feedback__ is welcome!
 If you need help, have problems, want to leave feedback or want to provide constructive criticism, you can leave a comment here at the [plugin page](http://www.itthinx.com/plugins/affiliates-contact-form-7).
