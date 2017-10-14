@@ -11,7 +11,7 @@ Affiliates plugin integration for Contact Form 7. Collect form data & track subm
 
 == Description ==
 
-This plugin integrates [Affiliates](http://www.itthinx.com/plugins/affiliates/), [Affiliates Pro](http://www.itthinx.com/plugins/affiliates-pro/) and [Affiliates Enterprise](http://www.itthinx.com/plugins/affiliates-enterprise/) with [Contact Form 7](http://wordpress.org/extend/plugins/contact-form-7).
+This plugin integrates with [Affiliates](https://wordpress.org/plugins/affiliates/), [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) and [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/) with [Contact Form 7](https://wordpress.org/plugins/contact-form-7).
 
 
 **Data storage & referrals**
@@ -31,9 +31,11 @@ Contact Form 7 forms can generate referrals with fixed amounts, rate-based amoun
 
 **Notifications**
 
-Notifications require [Affiliates Pro](http://www.itthinx.com/plugins/affiliates-pro/) or [Affiliates Enterprise](http://www.itthinx.com/plugins/affiliates-enterprise/).
+Basic notifications are supported by default with the free [Affiliates](https://wordpress.org/plugins/affiliates/) plugin but these do not support tokens.
 
-Upon each form submission, this integration can send notification emails to the site admin as well as to the referring affiliate. Affiliate notification emails for affiliates are customizable and can include information provided in submitted forms.
+Advanced notifications require the premium versions [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) or [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/).
+- Upon each form submission, this integration can send notification emails to the site admin as well as to the referring affiliate.
+- Affiliate notification emails for affiliates are customizable and can include information provided in submitted forms.
 
 
 **Application Suggestions**
@@ -49,15 +51,21 @@ Sales leads who submit a form managed through Affiliates Pro for Contact Form 7 
 Sales and support teams can use Affiliates Pro for Contact Form 7 to delegate sales and support requests to the right team members. Create an affiliate account for each team member and use affiliate links to direct requests to each.
 
 
-
 **Requirements**
 
 - [Contact Form 7](http://wordpress.org/extend/plugins/contact-form-7)
-- [Affiliates](http://wordpress.org/extend/plugins/affiliates), [Affiliates Pro](http://www.itthinx.com/plugins/affiliates-pro/) or [Affiliates Enterprise](http://www.itthinx.com/plugins/affiliates-enterprise/)
-- [Affiliates Contact Form 7 Integration](http://www.itthinx.com/plugins/affiliates-contact-form-7) (this plugin)
+- [Affiliates](https://wordpress.org/extend/plugins/affiliates), [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) or [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/)
+- [Affiliates Contact Form 7 Integration](https://wordpress.org/plugins/affiliates-contact-form-7) (this plugin)
 
 Install these, set up your forms, set up your own affiliate program and start gathering new leads!
 
+** Documentation **
+
+- Documentation page for Affiliates [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates/setup/settings/integrations/contact-form-7/)
+- Documentation page for Affiliates Pro [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates-pro/setup/settings/integrations/contact-form-7/)
+- Documentation page for Affiliates Enterprise [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates-enterprise/setup/settings/integrations/contact-form-7/)
+
+** Feedback **
 
 __Feedback__ is welcome!
 If you need help, have problems, want to leave feedback or want to provide constructive criticism, you can leave a comment here at the [plugin page](http://www.itthinx.com/plugins/affiliates-contact-form-7).
@@ -87,15 +95,19 @@ The plugin adds a new menu item *Affiliates > Contact Form 7* where details on t
 
 = How can I set the amount that affiliates earn on each sale? =
 
-If you are using [Affiliates](http://wordpress.org/extend/plugins/affiliates), go to *Affiliates > Contact Form 7* and set the rate and amount options there.
+If you are using [Affiliates](https://wordpress.org/plugins/affiliates), go to *Affiliates > Contact Form 7* and set the rate and amount options there.
 
-If you are using [Affiliates Pro](http://www.itthinx.com/plugins/affiliates-pro/) or [Affiliates Enterprise](http://www.itthinx.com/plugins/affiliates-enterprise/), also check the rate settings under *Affiliates > Settings*.
+If you are using [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) or [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/), also check the rate settings under *Affiliates > Settings*.
 
 Example: If you want to give an affiliate 10% of each net total sales amount, set the rate to *0.1*.
 
 == Screenshots ==
 
-See also: [Affiliates Contact Form 7 Integration](http://www.itthinx.com/plugins/affiliates-contact-form-7/)
+See also:
+
+- Documentation page for Affiliates [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates/setup/settings/integrations/contact-form-7/)
+- Documentation page for Affiliates Pro [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates-pro/setup/settings/integrations/contact-form-7/)
+- Documentation page for Affiliates Enterprise [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates-enterprise/setup/settings/integrations/contact-form-7/)
 
 1. Settings
 2. More settings
