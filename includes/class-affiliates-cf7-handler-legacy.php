@@ -26,7 +26,7 @@ if ( !defined( 'ABSPATH' ) ) {
 /**
  * Plugin main handler class.
  */
-class Affiliates_CF7_Handler {
+class Affiliates_CF7_Handler_Legacy {
 
 	/**
 	 * Adds the proper initialization action on the wp_init hook.
@@ -301,4 +301,4 @@ class Affiliates_CF7_Handler {
 
 	}
 }
-Affiliates_CF7_Handler::init();
+Affiliates_CF7_Handler_Legacy::init();
