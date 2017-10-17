@@ -4,7 +4,7 @@ Donate link: http://www.itthinx.com/plugins/affiliates-contact-form-7
 Tags: affiliate, affiliates, affiliate marketing, referral, growth marketing, ads, advertising, marketing, affiliate plugin, affiliate tool, cf7, contact form, Contact Form 7, CRM, e-commerce, earn money, integration, lead, lead tracking, leads, marketing, money, partner, links, referrer, team, teams, track, transaction
 Requires at least: 4.0.0
 Tested up to: 4.8.2
-Stable tag: 4.0.0
+Stable tag: 4.0.1
 License: GPLv3
 
 Affiliates plugin integration for Contact Form 7. Collect form data & track submissions. Lead tracking, sales, support ...
@@ -119,6 +119,9 @@ See also:
 
 == Changelog ==
 
+= 4.0.1 =
+* Fixed referral and referral item types.
+
 = 4.0.0 =
 * Tested for Wordpress 4.8.2 compatibility
 * Fixed issue on petition forms
@@ -142,4 +145,4 @@ See also:
 
 == Upgrade Notice ==
 
-This release fixes an issue with petition forms and has been tested with WordPress 4.8.
+This release is prepared for Affiliates 3.x. It fixes the referral types and an issue with petition forms. It has been tested with WordPress 4.8.
