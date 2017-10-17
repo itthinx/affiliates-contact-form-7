@@ -23,7 +23,7 @@
  * Description: Integrates Affiliates, Affiliates Pro and Affiliates Enterprise with Contact Form 7
  * Author: itthinx
  * Author URI: http://www.itthinx.com/
- * Version: 4.0.0
+ * Version: 4.0.1
  * License: GPLv3
  */
 

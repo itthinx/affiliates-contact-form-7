@@ -297,7 +297,7 @@ class Affiliates_CF7_Handler {
 					'group_ids'    => $group_ids
 				) ) ) {
 					$rate_id = $rate->rate_id;
-					$type = 'wpcf7_contact_form';
+					$type = class_exists( 'WPCF7_ContactForm' ) && defined( 'WPCF7_ContactForm::post_type' ) ? WPCF7_ContactForm::post_type : 'wpcf7_contact_form';
 
 					switch ( $rate->type ) {
 						case AFFILIATES_PRO_RATES_TYPE_AMOUNT :
@@ -346,7 +346,7 @@ class Affiliates_CF7_Handler {
 				$params['description']      = $description;
 				$params['data']             = $data;
 				$params['currency_id']      = $currency;
-				$params['type']             = 'sale';
+				$params['type']             = Affiliates_CF7::REFERRAL_TYPE;
 				$params['referral_items']   = $referral_items;
 				$params['reference']        = $form_id;
 				$params['reference_amount'] = $amount;
