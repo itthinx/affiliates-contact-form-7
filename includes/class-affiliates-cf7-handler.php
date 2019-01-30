@@ -262,6 +262,32 @@ class Affiliates_CF7_Handler {
 			}
 		}
 
+		if ( $use_form_base_amount ) {
+			if ( isset( $data['base-amount'] ) && isset( $data['base-amount']['value'] ) && is_numeric( $data['base-amount']['value'] ) ) {
+				$amount = floatval( $data['base-amount']['value'] );
+			}
+		}
+
+		if ( $use_form_amount ) {
+			if ( isset( $data['amount'] ) && isset( $data['amount']['value'] ) && is_numeric( $data['amount']['value'] ) ) {
+				$amount = floatval( $data['amount']['value'] );
+			}
+		}
+
+		if ( $use_form_currency ) {
+			if ( isset( $data['currency'] ) && isset( $data['currency']['value'] ) ) {
+				if ( in_array( $data['currency']['value'], Affiliates_CF7::$supported_currencies ) ) {
+					$currency = $data['currency']['value'];
+				}
+			}
+		}
+
+		if ( $amount === null || !is_numeric( $amount ) ) {
+			$amount = 0.0;
+		} else {
+			$amount = floatval( $amount );
+		}
+
 		// Using Affiliates 3.x API
 		$referrer_params = array();
 		$rc = new Affiliates_Referral_Controller();
@@ -288,6 +314,7 @@ class Affiliates_CF7_Handler {
 						}
 					}
 				}
+
 				$referral_items = array();
 				if ( $rate = $rc->seek_rate( array(
 					'affiliate_id' => $affiliate_id,
@@ -304,31 +331,41 @@ class Affiliates_CF7_Handler {
 							$amount = bcadd( '0', $rate->value, affiliates_get_referral_amount_decimals() );
 							break;
 						case AFFILIATES_PRO_RATES_TYPE_RATE :
-							// check form for base_amount
-							if ( $use_form_base_amount ) {
-								if ( isset( $data['base-amount'] ) && isset( $data['base-amount']['value'] ) && is_numeric( $data['base-amount']['value'] ) ) {
-									$amount = bcadd( '0', $data['base-amount']['value'] );
-								}
-							}
 							$amount = bcmul( $amount, $rate->value, affiliates_get_referral_amount_decimals() );
+							break;
+						case AFFILIATES_PRO_RATES_TYPE_FORMULA :
+							$tokenizer = new Affiliates_Formula_Tokenizer( $rate->get_meta( 'formula' ) );
+							// We don't support variable quantities on several items here so just use 1 as quantity.
+							$quantity = 1;
+							$variables = apply_filters(
+								'affiliates_formula_computer_variables',
+								array(
+									's' => $amount,
+									't' => $amount,
+									'p' => $amount / $quantity,
+									'q' => $quantity
+								),
+								$rate,
+								array(
+									'affiliate_id' => $affiliate_id,
+									'integration'  => 'affiliates-contact-form-7',
+									'form_id'      => $form_id
+								)
+							);
+							$computer = new Affiliates_Formula_Computer( $tokenizer, $variables );
+							$amount = $computer->compute();
+							if ( $computer->has_errors() ) {
+								affiliates_log_error( $computer->get_errors_pretty( 'text' ) );
+							}
+							if ( $amount === null || $amount < 0 ) {
+								$amount = 0.0;
+							}
+							$amount = bcadd( '0', $amount, affiliates_get_referral_amount_decimals() );
 							break;
 					}
 					// split proportional total if multiple affiliates are involved
 					if ( $n > 1 ) {
 						$amount = bcdiv( $amount, $n, affiliates_get_referral_amount_decimals() );
-					}
-
-					if ( $use_form_amount ) {
-						if ( isset( $data['amount'] ) && isset( $data['amount']['value'] ) && is_numeric( $data['amount']['value'] ) ) {
-							$amount = bcadd( '0', $data['amount']['value'] );
-						}
-					}
-					if ( $use_form_currency ) {
-						if ( isset( $data['currency'] ) && isset( $data['currency']['value'] ) ) {
-							if ( in_array( $data['currency']['value'], Affiliates_CF7::$supported_currencies ) ) {
-								$currency = $data['currency']['value'];
-							}
-						}
 					}
 
 					$referral_item = new Affiliates_Referral_Item( array(
