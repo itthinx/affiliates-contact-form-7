@@ -2,7 +2,7 @@
 /**
  * affiliates-contact-form-7.php
  *
- * Copyright (c) 2013-2017 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2013-2019 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -23,8 +23,8 @@
  * Description: Integrates Affiliates, Affiliates Pro and Affiliates Enterprise with Contact Form 7
  * Author: itthinx
  * Author URI: http://www.itthinx.com/
- * Version: 4.0.1
  * License: GPLv3
+ * Version: 5.0.0
  */
 
 if ( !defined( 'ABSPATH' ) ) {
