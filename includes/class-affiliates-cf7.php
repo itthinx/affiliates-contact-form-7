@@ -40,7 +40,7 @@ class Affiliates_CF7 {
 	const CURRENCY = 'currency';
 
 	/**
-	 * Supported currencies array
+	 * Supported currencies array (overr
 	 *
 	 * @var array
 	 */
@@ -189,6 +189,8 @@ class Affiliates_CF7 {
 	public static function wp_init() {
 		if ( self::check_dependencies() ) {
 			register_activation_hook( __FILE__, array( __CLASS__, 'activate' ) );
+			self::$supported_currencies = apply_filters( 'affiliates_cf7_currencies', Affiliates::$supported_currencies );
+			sort( self::$supported_currencies );
 			if (
 				defined( 'AFFILIATES_EXT_VERSION' ) &&
 				version_compare( AFFILIATES_EXT_VERSION, '3.0.0' ) >= 0 &&

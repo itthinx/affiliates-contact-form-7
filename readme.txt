@@ -2,10 +2,10 @@
 Contributors: itthinx
 Donate link: http://www.itthinx.com/plugins/affiliates-contact-form-7
 Tags: affiliate, affiliates, affiliate marketing, referral, growth marketing, ads, advertising, marketing, affiliate plugin, affiliate tool, cf7, contact form, Contact Form 7, CRM, e-commerce, earn money, integration, lead, lead tracking, leads, marketing, money, partner, links, referrer, team, teams, track, transaction
-Requires at least: 4.0.0
+Requires at least: 4.6.0
 Tested up to: 5.1
 Requires PHP: 5.6.0
-Stable tag: 5.0.0
+Stable tag: 5.1.0
 License: GPLv3
 
 Affiliates plugin integration for Contact Form 7. Collect form data & track submissions. Lead tracking, sales, support ...
@@ -120,35 +120,16 @@ See also:
 
 == Changelog ==
 
-= 5.0.0 =
-* WordPress 5.x compatible.
-* Added support for rate formulas (requires Affiliates Pro >= 4.x or Affiliates Enterprise >= 4.x).
+= 5.1.0 =
+* WordPress 5.1 compatibility.
+* Simplified footer and fixed a replacement issue.
+* Added changelog.txt.
+* Cleaned up unnecessary code.
+* Fixed currencies from Affiliates system were not used.
 
-= 4.0.1 =
-* Fixed referral and referral item types.
-
-= 4.0.0 =
-* Tested for Wordpress 4.8.2 compatibility
-* Fixed issue on petition forms
-* Added support for rates with Affiliates 3.0.0
-
-= 3.3.0 =
-* Added support for a affiliate_id or affiliate_login field to allow form submitters to indicate the referring affiliate's ID or user login.
-
-= 3.2.0 =
-* Added petition forms feature.
-* Tested for WordPress 4.1 compatibility.
-
-= 3.1.0 =
-* Updated for Contact Form 7 3.9 compatibility.
-
-= 3.0.1 =
-* WordPress 3.8 compatibility checked
-
-= 3.0.0 =
-* WordPress 3.6.1 compatible release
+For the complete history of changes see [changelog.txt](https://github.com/itthinx/affiliates-contact-form-7/blob/master/changelog.txt).
 
 == Upgrade Notice ==
 
-This version is compatible with WordPress 5.x, Affiliates, Affiliates Pro and Affiliates Enterprise.
+This version is compatible with the latest versions of WordPress, Affiliates, Affiliates Pro and Affiliates Enterprise.
 Support for formula-based rates requires Affiliates Pro 4.x or Affiliates Enterprise 4.x.
