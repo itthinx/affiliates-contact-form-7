@@ -1,0 +1,36 @@
+Changelog - Affiliates Contact Form 7 - www.itthinx.com
+
+= 5.1.0 =
+* WordPress 5.1 compatibility.
+* Simplified footer and fixed a replacement issue.
+* Added changelog.txt.
+* Cleaned up unnecessary code.
+* Fixed currencies from Affiliates system were not used.
+
+= 5.0.0 =
+* WordPress 5.x compatible.
+* Added support for rate formulas (requires Affiliates Pro >= 4.x or Affiliates Enterprise >= 4.x).
+
+= 4.0.1 =
+* Fixed referral and referral item types.
+
+= 4.0.0 =
+* Tested for Wordpress 4.8.2 compatibility
+* Fixed issue on petition forms
+* Added support for rates with Affiliates 3.0.0
+
+= 3.3.0 =
+* Added support for a affiliate_id or affiliate_login field to allow form submitters to indicate the referring affiliate's ID or user login.
+
+= 3.2.0 =
+* Added petition forms feature.
+* Tested for WordPress 4.1 compatibility.
+
+= 3.1.0 =
+* Updated for Contact Form 7 3.9 compatibility.
+
+= 3.0.1 =
+* WordPress 3.8 compatibility checked
+
+= 3.0.0 =
+* WordPress 3.6.1 compatible release

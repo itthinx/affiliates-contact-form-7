@@ -68,8 +68,6 @@ class Affiliates_CF7_Admin {
 	 */
 	public static function affiliates_admin_cf7() {
 
-		$output = '';
-
 		if ( !current_user_can( AFFILIATES_ADMINISTER_OPTIONS ) ) {
 			wp_die( esc_html__( 'Access denied.', 'affiliates-contact-form-7' ) );
 		}
@@ -140,17 +138,10 @@ class Affiliates_CF7_Admin {
 					$options[Affiliates_CF7::CURRENCY] = $_POST[Affiliates_CF7::CURRENCY];
 				}
 
-				$options[Affiliates_CF7::USE_FORM_AMOUNT] = !empty( $_POST[Affiliates_CF7::USE_FORM_AMOUNT] );
+				$options[Affiliates_CF7::USE_FORM_AMOUNT]      = !empty( $_POST[Affiliates_CF7::USE_FORM_AMOUNT] );
 				$options[Affiliates_CF7::USE_FORM_BASE_AMOUNT] = !empty( $_POST[Affiliates_CF7::USE_FORM_BASE_AMOUNT] );
-				$options[Affiliates_CF7::USE_FORM_CURRENCY] = !empty( $_POST[Affiliates_CF7::USE_FORM_CURRENCY] );
-
-				// @todo see below
-				// $options[Affiliates_CF7::NOTIFY_ADMIN] = !empty( $_POST[Affiliates_CF7::NOTIFY_ADMIN] );
-				// $options[Affiliates_CF7::NOTIFY_AFFILIATE] = !empty( $_POST[Affiliates_CF7::NOTIFY_AFFILIATE] );
-				// $options[Affiliates_CF7::SUBJECT] = $_POST[Affiliates_CF7::SUBJECT];
-				// $options[Affiliates_CF7::MESSAGE] = $_POST[Affiliates_CF7::MESSAGE];
-
-				$options[Affiliates_CF7::USAGE_STATS] = !empty( $_POST[Affiliates_CF7::USAGE_STATS] );
+				$options[Affiliates_CF7::USE_FORM_CURRENCY]    = !empty( $_POST[Affiliates_CF7::USE_FORM_CURRENCY] );
+				$options[Affiliates_CF7::USAGE_STATS]          = !empty( $_POST[Affiliates_CF7::USAGE_STATS] );
 			}
 			update_option( Affiliates_CF7::PLUGIN_OPTIONS, $options );
 		}
@@ -166,19 +157,13 @@ class Affiliates_CF7_Admin {
 		$use_form_base_amount = isset( $options[Affiliates_CF7::USE_FORM_BASE_AMOUNT] ) ? $options[Affiliates_CF7::USE_FORM_BASE_AMOUNT] : Affiliates_CF7::DEFAULT_USE_FORM_BASE_AMOUNT;
 		$use_form_currency    = isset( $options[Affiliates_CF7::USE_FORM_CURRENCY] ) ? $options[Affiliates_CF7::USE_FORM_CURRENCY] : Affiliates_CF7::DEFAULT_USE_FORM_CURRENCY;
 
-		$notify_admin      = isset( $options[Affiliates_CF7::NOTIFY_ADMIN] ) ? $options[Affiliates_CF7::NOTIFY_ADMIN] : Affiliates_CF7::NOTIFY_ADMIN_DEFAULT;
-		$notify_affiliate  = isset( $options[Affiliates_CF7::NOTIFY_AFFILIATE] ) ? $options[Affiliates_CF7::NOTIFY_AFFILIATE] : Affiliates_CF7::NOTIFY_AFFILIATE_DEFAULT;
-		$affiliate_subject = isset( $options[Affiliates_CF7::SUBJECT] ) ? esc_attr( wp_filter_nohtml_kses( $options[Affiliates_CF7::SUBJECT] ) ) : Affiliates_CF7::DEFAULT_SUBJECT;
-		$affiliate_message = isset( $options[Affiliates_CF7::MESSAGE] ) ? $options[Affiliates_CF7::MESSAGE] : Affiliates_CF7::DEFAULT_MESSAGE;
+		$usage_stats = isset( $options[Affiliates_CF7::USAGE_STATS] ) ? $options[Affiliates_CF7::USAGE_STATS] : Affiliates_CF7::USAGE_STATS_DEFAULT;
 
-		$usage_stats   = isset( $options[Affiliates_CF7::USAGE_STATS] ) ? $options[Affiliates_CF7::USAGE_STATS] : Affiliates_CF7::USAGE_STATS_DEFAULT;
-
-		echo
-		'<div>' .
-		'<h2>' .
-		esc_html__( 'Contact Form 7 Integration Settings', 'affiliates-contact-form-7' ) .
-		'</h2>' .
-		'</div>';
+		echo '<div>';
+		echo '<h2>';
+		esc_html_e( 'Contact Form 7 Integration Settings', 'affiliates-contact-form-7' );
+		echo '</h2>';
+		echo '</div>';
 
 		echo '<form action="" name="options" method="post">';
 		echo '<div>';
@@ -294,50 +279,6 @@ class Affiliates_CF7_Admin {
 			echo sprintf( wp_kses( __( 'The settings for <a href="%s">Notifications</a> apply.', 'affiliates-contact-form-7' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( admin_url( 'admin.php?page=affiliates-admin-notifications' ) ) );
 			echo '</p>';
 
-			// @todo provide the alternative when filters are added
-			// $output .= '<p class="description">';
-			// $output .= sprintf( __( 'Here you can customize the message sent to the referring affiliate. When enabled, this message is used for referrals created through Contact Form 7 form submissions, instead of the message set in the <a href="%s">Notifications</a> section.', 'affiliates-contact-form-7' ), esc_url( admin_url( 'admin.php?page=affiliates-admin-notifications' ) ) );
-			// $output .= '</p>';
-
-			// $output .= '<h4>' . __( 'Notify the admin', 'affiliates-contact-form-7' ) . '</h4>';
-			// $output .= '<p>';
-			// $output .= '<input name="' . Affiliates_CF7::NOTIFY_ADMIN . '" type="checkbox" ' . ( $notify_admin ? ' checked="checked" ' : '' ) . ' />';
-			// $output .= '&nbsp;';
-			// $output .= '<label for="' . Affiliates_CF7::NOTIFY_ADMIN . '">' . __( 'Notify the site administrator', 'affiliates-contact-form-7') . '</label>';
-			// $output .= '</p>';
-			// $output .= '<p class="description">' . __( 'Sends a notification email to the site administrator when a referral has been created for a form submission.', 'affiliates-contact-form-7' ) . '</p>';
-
-			// $output .= '<h4>' . __( 'Notify the affiliate', 'affiliates-contact-form-7' ) . '</h4>';
-			// $output .= '<p>';
-			// $output .= '<input name="' . Affiliates_CF7::NOTIFY_AFFILIATE . '" type="checkbox" ' . ( $notify_affiliate ? ' checked="checked" ' : '' ) . ' />';
-			// $output .= '&nbsp;';
-			// $output .= '<label for="' . Affiliates_CF7::NOTIFY_AFFILIATE . '">' . __( 'Notify the referring affiliate', 'affiliates-contact-form-7') . '</label>';
-			// $output .= '</p>';
-			// $output .= '<p class="description">' . __( 'Sends a notification email to the referring affiliate when a referral has been created for a form submission.', 'affiliates-contact-form-7' ) . '</p>';
-
-			// $output .= '<h4>' . __( 'Affiliate notification', 'affiliates-contact-form-7' ) . '</h4>';
-			// $output .= '<p>';
-			// $output .= '<label style="display:block" for="' . Affiliates_CF7::SUBJECT . '">' . __( 'Notification email subject', 'affiliates-contact-form-7') . '</label>';
-			// $output .= '<input style="width:40em" name="' . Affiliates_CF7::SUBJECT . '" type="text" value="' . $affiliate_subject . '" />';
-			// $output .= '</p>';
-			// $output .= '<p>';
-			// $output .= __( 'The default subject is:', 'affiliates-contact-form-7' );
-			// $output .= '<pre>';
-			// $output .= htmlentities( Affiliates_CF7::DEFAULT_SUBJECT );
-			// $output .= '</pre>';
-			// $output .= '</p>';
-			// $output .= '<p>';
-			// $output .= '<label style="display:block" for="' . Affiliates_CF7::MESSAGE . '">' . __( 'Notification email message', 'affiliates-contact-form-7') . '</label>';
-			// $output .= '<textarea style="width:40em;height:10em;" name="' . Affiliates_CF7::MESSAGE . '">' . stripslashes( $affiliate_message ) . '</textarea>';
-			// $output .= '</p>';
-			// $output .= '<p>';
-			// $output .= __( 'The default message is:', 'affiliates-contact-form-7' );
-			// $output .= '<pre>';
-			// $output .= htmlentities( Affiliates_CF7::DEFAULT_MESSAGE );
-			// $output .= '</pre>';
-			// $output .= '</p>';
-			// $output .= '<p class="description">' . __( 'These default tokens can be used in the subject and message: [site_title] [site_url].', 'affiliates-contact-form-7' ) . '</p>';
-
 			echo '<p>';
 			echo wp_kses( __( '<b>Contact Form 7</b> field names can also be used as tokens. The tokens are replaced by the text or values that have been submitted through a form.', 'affiliates-contact-form-7' ), array( 'b' => array() ) );
 			echo '</p>';
@@ -368,7 +309,7 @@ class Affiliates_CF7_Admin {
 		echo '</div>';
 		echo '</form>';
 
-		affiliates_footer( '' );
+		affiliates_footer();
 	}
 
 	/**
@@ -379,17 +320,23 @@ class Affiliates_CF7_Admin {
 	public static function affiliates_footer( $footer ) {
 		$options = get_option( Affiliates_CF7::PLUGIN_OPTIONS , array() );
 		$usage_stats   = isset( $options[Affiliates_CF7::USAGE_STATS] ) ? $options[Affiliates_CF7::USAGE_STATS] : Affiliates_CF7::USAGE_STATS_DEFAULT;
-		echo wp_kses( '<div style="font-size:0.9em">', array( 'div' => array( 'style' => array() ) ) );
-		echo wp_kses( '<p>', array( 'p' => array() ) );
+
+		$output = '';
+
+		$output .= '<div style="font-size:0.9em">';
+		$output .= '<p>';
 		$image_html = $usage_stats ? "<img src='http://www.itthinx.com/img/affiliates-contact-form-7/affiliates-contact-form-7.png' alt=''/>" : '';
-		echo wp_kses( $image_html, array( 'img' => array( 'src' => array(), 'alt' => array() ) ) );
-		echo wp_kses( __( "Powered by <a href='http://www.itthinx.com/plugins/affiliates-contact-form-7' target='_blank'>Affiliates Contact Form 7 Integration</a>.", 'affiliates-contact-form-7' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) );
-		if ( !class_exists( 'Affiliates_Attributes' ) ) {
-			echo ' ';
-			echo wp_kses( __( 'Get additional features with <a href="http://www.itthinx.com/plugins/affiliates-pro/" target="_blank">Affiliates Pro</a>.', 'affiliates-contact-form-7' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) );
-		}
-		echo wp_kses( '</p>', array( 'p' => array() ) );
-		echo wp_kses( '</div>', array( 'div' => array() ) );
+		$output .= wp_kses( $image_html, array( 'img' => array( 'src' => array(), 'alt' => array() ) ) );
+		$output .= wp_kses(
+			sprintf(
+				__( 'Affiliates Contact Form 7 integration by <a href="%s" target="_blank">itthinx.com</a>', 'affiliates-contact-form-7' ),
+				'https://www.itthinx.com/shop/'
+			),
+			array( 'a' => array( 'href' => array(), 'target' => array() ) )
+		);
+		$output .= '</p>';
+		$output .= '</div>';
+		return $output . $footer;
 	}
 
 }

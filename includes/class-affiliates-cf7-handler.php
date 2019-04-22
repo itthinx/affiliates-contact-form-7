@@ -33,9 +33,6 @@ class Affiliates_CF7_Handler {
 	 */
 	public static function init() {
 
-		Affiliates_CF7::$supported_currencies = apply_filters( 'affiliates_cf7_currencies', AFFILIATES_CF7::$supported_currencies );
-		sort( Affiliates_CF7::$supported_currencies );
-
 		// hook into after form submission, before the email is sent
 		add_action( 'wpcf7_before_send_mail', array( __CLASS__, 'wpcf7_before_send_mail' ) );
 
