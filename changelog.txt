@@ -1,5 +1,8 @@
 Changelog - Affiliates Contact Form 7 - www.itthinx.com
 
+= 5.2.0 =
+* WordPress 5.2 compatible.
+
 = 5.1.0 =
 * WordPress 5.1 compatibility.
 * Simplified footer and fixed a replacement issue.
