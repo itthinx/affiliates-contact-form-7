@@ -2,7 +2,7 @@
 /**
  * affiliates-contact-form-7.php
  *
- * Copyright (c) 2013-2019 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2013-2021 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -19,12 +19,12 @@
  * @since affiliates-contact-form-7 3.0.0
  *
  * Plugin Name: Affiliates Contact Form 7 Integration
- * Plugin URI: http://www.itthinx.com/plugins/affiliates-contact-form-7/
+ * Plugin URI: https://www.itthinx.com/plugins/affiliates-contact-form-7/
  * Description: Integrates Affiliates, Affiliates Pro and Affiliates Enterprise with Contact Form 7
  * Author: itthinx
- * Author URI: http://www.itthinx.com/
+ * Author URI: https://www.itthinx.com/
  * License: GPLv3
- * Version: 5.2.0
+ * Version: 5.2.1
  */
 
 if ( !defined( 'ABSPATH' ) ) {

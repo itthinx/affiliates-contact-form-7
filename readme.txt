@@ -1,11 +1,11 @@
 === Affiliates Contact Form 7 Integration ===
 Contributors: itthinx
-Donate link: http://www.itthinx.com/plugins/affiliates-contact-form-7
+Donate link: https://www.itthinx.com/shop/
 Tags: affiliate, affiliates, affiliate marketing, referral, growth marketing, ads, advertising, marketing, affiliate plugin, affiliate tool, cf7, contact form, Contact Form 7, CRM, e-commerce, earn money, integration, lead, lead tracking, leads, marketing, money, partner, links, referrer, team, teams, track, transaction
 Requires at least: 4.6.0
 Tested up to: 5.7
 Requires PHP: 5.6.0
-Stable tag: 5.2.0
+Stable tag: 5.2.1
 License: GPLv3
 
 Affiliates plugin integration for Contact Form 7. Collect form data & track submissions. Lead tracking, sales, support ...
@@ -54,7 +54,7 @@ Sales and support teams can use Affiliates Pro for Contact Form 7 to delegate sa
 
 **Requirements**
 
-- [Contact Form 7](http://wordpress.org/extend/plugins/contact-form-7)
+- [Contact Form 7](https://wordpress.org/plugins/contact-form-7)
 - [Affiliates](https://wordpress.org/extend/plugins/affiliates), [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) or [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/)
 - [Affiliates Contact Form 7 Integration](https://wordpress.org/plugins/affiliates-contact-form-7) (this plugin)
 
@@ -62,24 +62,24 @@ Install these, set up your forms, set up your own affiliate program and start ga
 
 **Documentation**
 
-- Documentation page for Affiliates [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates/setup/settings/integrations/contact-form-7/)
-- Documentation page for Affiliates Pro [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates-pro/setup/settings/integrations/contact-form-7/)
-- Documentation page for Affiliates Enterprise [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates-enterprise/setup/settings/integrations/contact-form-7/)
+- Documentation page for Affiliates [Affiliates Contact Form 7 Integration](https://docs.itthinx.com/document/affiliates/setup/settings/integrations/contact-form-7/)
+- Documentation page for Affiliates Pro [Affiliates Contact Form 7 Integration](https://docs.itthinx.com/document/affiliates-pro/setup/settings/integrations/contact-form-7/)
+- Documentation page for Affiliates Enterprise [Affiliates Contact Form 7 Integration](https://docs.itthinx.com/document/affiliates-enterprise/setup/settings/integrations/contact-form-7/)
 
 **Feedback**
 
 __Feedback__ is welcome!
-If you need help, have problems, want to leave feedback or want to provide constructive criticism, you can leave a comment here at the [plugin page](http://www.itthinx.com/plugins/affiliates-contact-form-7).
+If you need help, have problems, want to leave feedback or want to provide constructive criticism, you can leave a comment here at the [plugin page](https://www.itthinx.com/plugins/affiliates-contact-form-7).
 
 Please try to solve problems there before you rate this plugin or say it doesn't work. There goes a _lot_ of work into providing you with free quality plugins! Please appreciate that and help with your feedback. Thanks!
 
-You are welcome to [follow @itthinx on Twitter](http://twitter.com/itthinx) for updates on this and related plugins.
+You are welcome to follow [@itthinx](https://twitter.com/itthinx) for updates on this and related plugins.
 
 == Installation ==
 
-1. Install and activate the [Contact Form 7](http://wordpress.org/extend/plugins/contact-form-7) plugin, set up your forms.
-2. Install and activate the [Affiliates](http://wordpress.org/extend/plugins/affiliates) plugin. Use the default settings or configure it to your needs.
-3. Install and activate the [Affiliates Contact Form 7 Integration](http://www.itthinx.com/plugins/affiliates-contact-form-7) plugin.
+1. Install and activate the [Contact Form 7](https://wordpress.org/plugins/contact-form-7) plugin, set up your forms.
+2. Install and activate the [Affiliates](https://wordpress.org/plugins/affiliates) plugin. Use the default settings or configure it to your needs.
+3. Install and activate the [Affiliates Contact Form 7 Integration](https://www.itthinx.com/plugins/affiliates-contact-form-7) plugin.
 4. A new *Contact Form 7* menu item will appear under the *Affiliates* menu in WordPress. Follow the intructions to set up the integration there.
 
 Note that you can install the plugins from your WordPress installation directly: use the *Add new* option found in the *Plugins* menu.
@@ -106,9 +106,9 @@ Example: If you want to give an affiliate 10% of each net total sales amount, se
 
 See also:
 
-- Documentation page for Affiliates [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates/setup/settings/integrations/contact-form-7/)
-- Documentation page for Affiliates Pro [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates-pro/setup/settings/integrations/contact-form-7/)
-- Documentation page for Affiliates Enterprise [Affiliates Contact Form 7 Integration](http://docs.itthinx.com/document/affiliates-enterprise/setup/settings/integrations/contact-form-7/)
+- Documentation page for Affiliates [Affiliates Contact Form 7 Integration](https://docs.itthinx.com/document/affiliates/setup/settings/integrations/contact-form-7/)
+- Documentation page for Affiliates Pro [Affiliates Contact Form 7 Integration](https://docs.itthinx.com/document/affiliates-pro/setup/settings/integrations/contact-form-7/)
+- Documentation page for Affiliates Enterprise [Affiliates Contact Form 7 Integration](https://docs.itthinx.com/document/affiliates-enterprise/setup/settings/integrations/contact-form-7/)
 
 1. Settings
 2. More settings
@@ -120,14 +120,7 @@ See also:
 
 == Changelog ==
 
-= 5.1.0 =
-* WordPress 5.1 compatibility.
-* Simplified footer and fixed a replacement issue.
-* Added changelog.txt.
-* Cleaned up unnecessary code.
-* Fixed currencies from Affiliates system were not used.
-
-For the complete history of changes see [changelog.txt](https://github.com/itthinx/affiliates-contact-form-7/blob/master/changelog.txt).
+See [changelog.txt](https://github.com/itthinx/affiliates-contact-form-7/blob/master/changelog.txt).
 
 == Upgrade Notice ==
 
