@@ -271,7 +271,7 @@ class Affiliates_CF7_Admin {
 
 		if ( !class_exists( 'Affiliates_Notifications' ) ) {
 			echo '<p class="">';
-			echo wp_kses( __( 'Notifications require <a href="http://www.itthinx.com/shop/" target="_blank">Affiliates Pro</a> or <a href="http://www.itthinx.com/shop/affiliates-enterprise/" target="_blank">Affiliates Enterprise</a>', 'affiliates-contact-form-7' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) );
+			echo wp_kses( __( 'Notifications require <a href="https://www.itthinx.com/shop/affiliates-pro/" target="_blank">Affiliates Pro</a> or <a href="https://www.itthinx.com/shop/affiliates-enterprise/" target="_blank">Affiliates Enterprise</a>', 'affiliates-contact-form-7' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) );
 			echo  '</p>';
 		} else {
 
@@ -325,7 +325,7 @@ class Affiliates_CF7_Admin {
 
 		$output .= '<div style="font-size:0.9em">';
 		$output .= '<p>';
-		$image_html = $usage_stats ? "<img src='http://www.itthinx.com/img/affiliates-contact-form-7/affiliates-contact-form-7.png' alt=''/>" : '';
+		$image_html = $usage_stats ? "<img src='https://www.itthinx.com/img/affiliates-contact-form-7/affiliates-contact-form-7.png' alt=''/>" : '';
 		$output .= wp_kses( $image_html, array( 'img' => array( 'src' => array(), 'alt' => array() ) ) );
 		$output .= wp_kses(
 			sprintf(

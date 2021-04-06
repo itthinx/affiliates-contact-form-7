@@ -1,5 +1,10 @@
 Changelog - Affiliates Contact Form 7 - www.itthinx.com
 
+= 5.2.1 =
+* Fixes a fatal error when no Affiliates plugin is active.
+* Fixed use of deprecated method WPCF7_ShortcodeManager::scan_shortcode to use WPCF7_FormTagsManager::scan instead.
+* Updated outdated links and using https instead of http where appropriate.
+
 = 5.2.0 =
 * WordPress 5.7 compatible.
 

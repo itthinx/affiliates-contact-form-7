@@ -175,9 +175,8 @@ class Affiliates_CF7 {
 	 */
 	public static function init() {
 		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
-
 		add_action( 'init', array( __CLASS__, 'wp_init' ) );
-
+		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
 		if ( is_admin() ) {
 			include_once 'class-affiliates-cf7-admin.php';
 		}
@@ -189,15 +188,25 @@ class Affiliates_CF7 {
 	public static function wp_init() {
 		if ( self::check_dependencies() ) {
 			register_activation_hook( __FILE__, array( __CLASS__, 'activate' ) );
-			self::$supported_currencies = apply_filters( 'affiliates_cf7_currencies', Affiliates::$supported_currencies );
+		}
+	}
+
+	/**
+	 * @since 5.2.1
+	 */
+	public static function plugins_loaded() {
+		if ( self::check_dependencies() ) {
+			if ( class_exists( 'Affiliates' ) ) {
+				self::$supported_currencies = apply_filters( 'affiliates_cf7_currencies', Affiliates::$supported_currencies );
+			}
 			sort( self::$supported_currencies );
 			if (
 				defined( 'AFFILIATES_EXT_VERSION' ) &&
 				version_compare( AFFILIATES_EXT_VERSION, '3.0.0' ) >= 0 &&
 				class_exists( 'Affiliates_Referral' ) &&
-				(
-					!defined( 'Affiliates_Referral::DEFAULT_REFERRAL_CALCULATION_KEY' ) ||
-					!get_option( Affiliates_Referral::DEFAULT_REFERRAL_CALCULATION_KEY, null )
+			(
+				!defined( 'Affiliates_Referral::DEFAULT_REFERRAL_CALCULATION_KEY' ) ||
+				!get_option( Affiliates_Referral::DEFAULT_REFERRAL_CALCULATION_KEY, null )
 				)
 			) {
 				include_once 'class-affiliates-cf7-handler.php';
@@ -231,14 +240,14 @@ class Affiliates_CF7 {
 		if ( !$affiliates_is_active ) {
 			self::$admin_messages[] =
 				"<div class='error'>" .
-				__( 'The <strong>Affiliates Contact Form 7 Integration</strong> plugin requires an appropriate Affiliates plugin: <a href="http://www.itthinx.com/plugins/affiliates" target="_blank">Affiliates</a>, <a href="http://www.itthinx.com/plugins/affiliates-pro" target="_blank">Affiliates Pro</a> or <a href="http://www.itthinx.com/plugins/affiliates-enterprise" target="_blank">Affiliates Enterprise</a>.', 'affiliates-contact-form-7' ) .
+				__( 'The <strong>Affiliates Contact Form 7 Integration</strong> plugin requires an appropriate Affiliates plugin: <a href="https://www.itthinx.com/plugins/affiliates" target="_blank">Affiliates</a>, <a href="https://www.itthinx.com/shop/affiliates-pro/" target="_blank">Affiliates Pro</a> or <a href="https://www.itthinx.com/shop/affiliates-enterprise/" target="_blank">Affiliates Enterprise</a>.', 'affiliates-contact-form-7' ) .
 				'</div>';
 		}
 		// $cf7_is_active = in_array( 'contact-form-7/wp-contact-form-7.php', $active_plugins );
 		// if ( !$cf7_is_active ) {
 		// self::$admin_messages[] =
 		// "<div class='error'>" .
-		// __( 'The <strong>Affiliates Contact Form 7 Integration</strong> plugin requires <a href="http://wordpress.org/extend/plugins/contact-form-7" target="_blank">Contact Form 7</a>.', 'affiliates-contact-form-7' ) .
+		// __( 'The <strong>Affiliates Contact Form 7 Integration</strong> plugin requires <a href="https://wordpress.org/plugins/contact-form-7" target="_blank">Contact Form 7</a>.', 'affiliates-contact-form-7' ) .
 		// "</div>";
 		// }
 		// if ( !$affiliates_is_active || !$cf7_is_active ) {

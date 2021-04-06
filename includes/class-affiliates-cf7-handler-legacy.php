@@ -124,7 +124,10 @@ class Affiliates_CF7_Handler_Legacy {
 		}
 
 		// only record actual form fields of interest
-		if ( method_exists( 'WPCF7_ShortcodeManager', 'get_instance' ) ) {
+		if ( class_exists( 'WPCF7_FormTagsManager' ) && method_exists( 'WPCF7_FormTagsManager', 'get_instance' ) ) {
+			$manager = WPCF7_FormTagsManager::get_instance();
+			$scanned_fields = $manager->scan( $form->prop( 'form' ) );
+		} else if ( class_exists( 'WPCF7_ShortcodeManager' ) && method_exists( 'WPCF7_ShortcodeManager', 'get_instance' ) ) {
 			$manager = WPCF7_ShortcodeManager::get_instance();
 			$scanned_fields = $manager->scan_shortcode( $form->prop( 'form' ) );
 		} else {
