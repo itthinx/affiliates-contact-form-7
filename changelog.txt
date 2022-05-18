@@ -1,5 +1,8 @@
 Changelog - Affiliates Contact Form 7 - www.itthinx.com
 
+= 5.3.0 =
+* WordPress 6.0 compatible.
+
 = 5.2.1 =
 * Fixes a fatal error when no Affiliates plugin is active.
 * Fixed use of deprecated method WPCF7_ShortcodeManager::scan_shortcode to use WPCF7_FormTagsManager::scan instead.

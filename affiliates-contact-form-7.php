@@ -24,7 +24,7 @@
  * Author: itthinx
  * Author URI: https://www.itthinx.com/
  * License: GPLv3
- * Version: 5.2.1
+ * Version: 5.3.0
  */
 
 if ( !defined( 'ABSPATH' ) ) {
