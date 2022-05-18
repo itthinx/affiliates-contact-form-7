@@ -2,7 +2,7 @@
 /**
  * affiliates-contact-form-7.php
  *
- * Copyright (c) 2013-2021 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2013-2022 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -24,7 +24,7 @@
  * Author: itthinx
  * Author URI: https://www.itthinx.com/
  * License: GPLv3
- * Version: 5.2.1
+ * Version: 5.3.0
  */
 
 if ( !defined( 'ABSPATH' ) ) {
