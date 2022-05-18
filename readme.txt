@@ -2,7 +2,7 @@
 Contributors: itthinx
 Donate link: https://www.itthinx.com/shop/
 Tags: affiliate, affiliates, affiliate marketing, referral, growth marketing, ads, advertising, marketing, affiliate plugin, affiliate tool, cf7, contact form, Contact Form 7, CRM, e-commerce, earn money, integration, lead, lead tracking, leads, marketing, money, partner, links, referrer, team, teams, track, transaction
-Requires at least: 4.6.0
+Requires at least: 5.6
 Tested up to: 6.0
 Requires PHP: 5.6.0
 Stable tag: 5.3.0
