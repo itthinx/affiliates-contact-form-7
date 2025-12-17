@@ -142,6 +142,7 @@ class Affiliates_CF7_Handler_Legacy {
 		if ( class_exists( 'WPCF7_Submission' ) ) {
 			$submission = WPCF7_Submission::get_instance();
 			$posted_data = $submission->get_posted_data();
+			$container_post_id = $submission->get_meta( 'container_post_id' ); // the post/page id containing the form
 			$uploaded_files = $submission->uploaded_files();
 		} else {
 			$posted_data = $form->posted_data;
@@ -226,7 +227,7 @@ class Affiliates_CF7_Handler_Legacy {
 		}
 
 		// can't get_the_ID() here
-		$post_id = isset( $_GET['page_id'] ) ? intval( $_GET['page_id'] ) : 0;
+		$post_id = isset( $container_post_id ) ? $container_post_id : 0;
 
 		$description = !empty( $form_title ) ? $form_title : 'Contact Form 7';
 		$base_amount = null;
@@ -250,7 +251,7 @@ class Affiliates_CF7_Handler_Legacy {
 		}
 		if ( $use_form_currency ) {
 			if ( isset( $data['currency'] ) && isset( $data['currency']['value'] ) ) {
-				if ( in_array( $data['currency']['value'], Affiliates_CF7::$supported_currencies ) ) {
+				if ( in_array( $data['currency']['value'], Affiliates_CF7::get_supported_currencies() ) ) {
 					$currency = $data['currency']['value'];
 				}
 			}

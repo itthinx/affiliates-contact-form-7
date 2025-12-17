@@ -32,16 +32,9 @@ class Affiliates_CF7_Admin {
 	const SET_ADMIN_OPTIONS = 'set_admin_options';
 
 	/**
-	 * Adds the proper initialization action on the wp_init hook.
+	 * Initializes class and adds actions and filters.
 	 */
 	public static function init() {
-		add_action( 'init', array( __CLASS__, 'wp_init' ) );
-	}
-
-	/**
-	 * Adds actions and filters.
-	 */
-	public static function wp_init() {
 		add_action( 'affiliates_admin_menu', array( __CLASS__, 'affiliates_admin_menu' ) );
 		add_filter( 'affiliates_footer', array( __CLASS__, 'affiliates_footer' ) );
 	}
@@ -75,10 +68,10 @@ class Affiliates_CF7_Admin {
 		$options = get_option( Affiliates_CF7::PLUGIN_OPTIONS, array() );
 
 		if ( isset( $_POST['submit'] ) ) {
-			if ( wp_verify_nonce( $_POST[self::NONCE], self::SET_ADMIN_OPTIONS ) ) {
+			if ( isset( $_POST[self::NONCE] ) && wp_verify_nonce( wp_unslash( $_POST[self::NONCE] ), self::SET_ADMIN_OPTIONS ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 				if ( !class_exists( 'Affiliates_Referral' ) ) {
-					$options[Affiliates_CF7::REFERRAL_RATE]  = floatval( $_POST[Affiliates_CF7::REFERRAL_RATE] );
+					$options[Affiliates_CF7::REFERRAL_RATE]  = floatval( $_POST[Affiliates_CF7::REFERRAL_RATE] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 					if ( $options[Affiliates_CF7::REFERRAL_RATE] > 1.0 ) {
 						$options[Affiliates_CF7::REFERRAL_RATE] = 1.0;
 					} else if ( $options[Affiliates_CF7::REFERRAL_RATE] < 0 ) {
@@ -89,7 +82,7 @@ class Affiliates_CF7_Admin {
 				$ids = '';
 				$include_form_ids = array();
 				if ( !empty( $_POST[Affiliates_CF7::INCLUDED_FORMS] ) ) {
-					$ids = trim( $_POST[Affiliates_CF7::INCLUDED_FORMS] );
+					$ids = trim( wp_unslash( $_POST[Affiliates_CF7::INCLUDED_FORMS] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					if ( !empty( $ids ) ) {
 						$ids = explode( ',', $ids );
 						foreach ( $ids as $id ) {
@@ -105,7 +98,7 @@ class Affiliates_CF7_Admin {
 				$ids = '';
 				$exclude_form_ids = array();
 				if ( !empty( $_POST[Affiliates_CF7::EXCLUDED_FORMS] ) ) {
-					$ids = trim( $_POST[Affiliates_CF7::EXCLUDED_FORMS] );
+					$ids = trim( wp_unslash( $_POST[Affiliates_CF7::EXCLUDED_FORMS] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					if ( !empty( $ids ) ) {
 						$ids = explode( ',', $ids );
 						foreach ( $ids as $id ) {
@@ -121,7 +114,7 @@ class Affiliates_CF7_Admin {
 				$ids = '';
 				$petition_form_ids = array();
 				if ( !empty( $_POST[Affiliates_CF7::PETITION_FORMS] ) ) {
-					$ids = trim( $_POST[Affiliates_CF7::PETITION_FORMS] );
+					$ids = trim( wp_unslash( $_POST[Affiliates_CF7::PETITION_FORMS] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					if ( !empty( $ids ) ) {
 						$ids = explode( ',', $ids );
 						foreach ( $ids as $id ) {
@@ -134,8 +127,8 @@ class Affiliates_CF7_Admin {
 				}
 				$options[Affiliates_CF7::PETITION_FORMS] = $petition_form_ids;
 
-				if ( isset( $_POST[Affiliates_CF7::CURRENCY] ) && in_array( $_POST[Affiliates_CF7::CURRENCY], Affiliates_CF7::$supported_currencies ) ) {
-					$options[Affiliates_CF7::CURRENCY] = $_POST[Affiliates_CF7::CURRENCY];
+				if ( isset( $_POST[Affiliates_CF7::CURRENCY] ) && in_array( $_POST[Affiliates_CF7::CURRENCY], Affiliates_CF7::get_supported_currencies() ) ) {
+					$options[Affiliates_CF7::CURRENCY] = wp_unslash( $_POST[Affiliates_CF7::CURRENCY] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 				}
 
 				$options[Affiliates_CF7::USE_FORM_AMOUNT]      = !empty( $_POST[Affiliates_CF7::USE_FORM_AMOUNT] );
@@ -230,7 +223,7 @@ class Affiliates_CF7_Admin {
 		echo '<label>' . esc_html__( 'Currency', 'affiliates-contact-form-7' ) . '</label>';
 		echo ' ';
 		echo '<select name="' . esc_attr( Affiliates_CF7::CURRENCY ) . '">';
-		foreach ( Affiliates_CF7::$supported_currencies as $cid ) {
+		foreach ( Affiliates_CF7::get_supported_currencies() as $cid ) {
 			$selected = ( $currency == $cid ) ? ' selected="selected" ' : '';
 			echo '<option ' . esc_html( $selected ) . ' value="' . esc_attr( $cid ) . '">' . esc_attr( $cid ) . '</option>';
 		}
@@ -271,11 +264,13 @@ class Affiliates_CF7_Admin {
 
 		if ( !class_exists( 'Affiliates_Notifications' ) ) {
 			echo '<p class="">';
+			/* translators: %s Affiliates Pro shop URL */
 			echo wp_kses( __( 'Notifications require <a href="https://www.itthinx.com/shop/affiliates-pro/" target="_blank">Affiliates Pro</a> or <a href="https://www.itthinx.com/shop/affiliates-enterprise/" target="_blank">Affiliates Enterprise</a>', 'affiliates-contact-form-7' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) );
 			echo  '</p>';
 		} else {
 
 			echo '<p class="description">';
+			/* translators: %s Affiliates Notifications Dashboard URL */
 			echo sprintf( wp_kses( __( 'The settings for <a href="%s">Notifications</a> apply.', 'affiliates-contact-form-7' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( admin_url( 'admin.php?page=affiliates-admin-notifications' ) ) );
 			echo '</p>';
 
@@ -302,7 +297,7 @@ class Affiliates_CF7_Admin {
 		echo '</p>';
 
 		echo '<p>';
-		echo wp_nonce_field( self::SET_ADMIN_OPTIONS, self::NONCE, true, false );
+		echo wp_nonce_field( self::SET_ADMIN_OPTIONS, self::NONCE, true, false ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<input type="submit" name="submit" value="' . esc_attr__( 'Save', 'affiliates-contact-form-7' ) . '" class="button button-primary" />';
 		echo '</p>';
 
@@ -325,10 +320,11 @@ class Affiliates_CF7_Admin {
 
 		$output .= '<div style="font-size:0.9em">';
 		$output .= '<p>';
-		$image_html = $usage_stats ? "<img src='https://www.itthinx.com/img/affiliates-contact-form-7/affiliates-contact-form-7.png' alt=''/>" : '';
+		$image_html = $usage_stats ? "<img src='https://www.itthinx.com/img/affiliates-contact-form-7/affiliates-contact-form-7.png' alt=''/>" : ''; // phpcs:ignore PluginCheck.CodeAnalysis.Offloading.OffloadedContent
 		$output .= wp_kses( $image_html, array( 'img' => array( 'src' => array(), 'alt' => array() ) ) );
 		$output .= wp_kses(
 			sprintf(
+				/* translators: Itthinx.com Shop URL */
 				__( 'Affiliates Contact Form 7 integration by <a href="%s" target="_blank">itthinx.com</a>', 'affiliates-contact-form-7' ),
 				'https://www.itthinx.com/shop/'
 			),

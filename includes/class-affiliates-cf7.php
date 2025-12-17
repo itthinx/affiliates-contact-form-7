@@ -40,7 +40,9 @@ class Affiliates_CF7 {
 	const CURRENCY = 'currency';
 
 	/**
-	 * Supported currencies array (overr
+	 * Supported currencies array
+	 *
+	 * @deprecated as of 5.4.0
 	 *
 	 * @var array
 	 */
@@ -171,48 +173,39 @@ class Affiliates_CF7 {
 	}
 
 	/**
-	 * Initializes the integration if dependencies are verified.
+	 * Initializes the integration.
 	 */
 	public static function init() {
-		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
-		add_action( 'init', array( __CLASS__, 'wp_init' ) );
-		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
-		if ( is_admin() ) {
-			include_once 'class-affiliates-cf7-admin.php';
-		}
+		// @since 5.4.0 use priority 11 to make sure we act after core plugin has run its own init action
+		add_action( 'init', array( __CLASS__, 'wp_init' ), 11 );
 	}
 
 	/**
-	 * Loads classes.
+	 * Checks dependencies and loads admin, handler class.
 	 */
 	public static function wp_init() {
 		if ( self::check_dependencies() ) {
 			register_activation_hook( __FILE__, array( __CLASS__, 'activate' ) );
-		}
-	}
-
-	/**
-	 * @since 5.2.1
-	 */
-	public static function plugins_loaded() {
-		if ( self::check_dependencies() ) {
-			if ( class_exists( 'Affiliates' ) ) {
-				self::$supported_currencies = apply_filters( 'affiliates_cf7_currencies', Affiliates::$supported_currencies );
+			if ( is_admin() ) {
+				include_once 'class-affiliates-cf7-admin.php';
 			}
+
 			sort( self::$supported_currencies );
 			if (
 				defined( 'AFFILIATES_EXT_VERSION' ) &&
 				version_compare( AFFILIATES_EXT_VERSION, '3.0.0' ) >= 0 &&
 				class_exists( 'Affiliates_Referral' ) &&
-			(
-				!defined( 'Affiliates_Referral::DEFAULT_REFERRAL_CALCULATION_KEY' ) ||
-				!get_option( Affiliates_Referral::DEFAULT_REFERRAL_CALCULATION_KEY, null )
+				(
+					!defined( 'Affiliates_Referral::DEFAULT_REFERRAL_CALCULATION_KEY' ) ||
+					!get_option( Affiliates_Referral::DEFAULT_REFERRAL_CALCULATION_KEY, null )
 				)
 			) {
 				include_once 'class-affiliates-cf7-handler.php';
 			} else {
 				include_once 'class-affiliates-cf7-handler-legacy.php';
 			}
+		} else {
+			add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
 		}
 	}
 
@@ -276,6 +269,22 @@ class Affiliates_CF7 {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Returns currency IDs for our supported currencies.
+	 * Applies the affiliates_cf7_currencies filter on the array to allow modification.
+	 *
+	 * @return array of currency IDs
+	 */
+	public static function get_supported_currencies() {
+		$supported_currencies = Affiliates::$supported_currencies;
+		if ( is_array( $supported_currencies ) ) {
+			$keys = $supported_currencies;
+		} else {
+			$keys = self::$supported_currencies;
+		}
+		return apply_filters( 'affiliates_cf7_currencies', $keys );
 	}
 
 }
