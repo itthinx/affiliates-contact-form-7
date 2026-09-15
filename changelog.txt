@@ -1,5 +1,8 @@
 Changelog - Affiliates Contact Form 7 - www.itthinx.com
 
+= 6.0.0 =
+* WordPress 7.1 compatible.
+
 = 5.4.0 =
 * WordPress 6.9 compatible.
 * Requires at least WordPress 6.5.

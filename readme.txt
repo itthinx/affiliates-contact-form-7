@@ -3,9 +3,9 @@ Contributors: itthinx
 Donate link: https://www.itthinx.com/shop/
 Tags: affiliate, affiliates, affiliate marketing, referral, contact form 7
 Requires at least: 6.5
-Tested up to: 6.9
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 5.4.0
+Stable tag: 6.0.0
 License: GPLv3
 
 Affiliates plugin integration for Contact Form 7. Collect form data & track submissions. Lead tracking, sales, support ...

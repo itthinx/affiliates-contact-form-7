@@ -24,7 +24,7 @@
  * Author: itthinx
  * Author URI: https://www.itthinx.com/
  * License: GPLv3
- * Version: 5.4.0
+ * Version: 6.0.0
  * Requires at least: 6.5
  * Requires PHP: 7.4
  * Donate-Link: https://www.itthinx.com/shop/
