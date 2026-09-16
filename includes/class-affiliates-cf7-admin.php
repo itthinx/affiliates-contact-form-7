@@ -86,8 +86,8 @@ class Affiliates_CF7_Admin {
 					if ( !empty( $ids ) ) {
 						$ids = explode( ',', $ids );
 						foreach ( $ids as $id ) {
-							$id = intval( trim( $id ) );
-							if ( $id >= 0 && !in_array( $id, $include_form_ids ) ) {
+							$id = trim( $id );
+							if ( $id != '' && !in_array( $id, $include_form_ids ) ) {
 								$include_form_ids[] = $id;
 							}
 						}
@@ -102,8 +102,8 @@ class Affiliates_CF7_Admin {
 					if ( !empty( $ids ) ) {
 						$ids = explode( ',', $ids );
 						foreach ( $ids as $id ) {
-							$id = intval( trim( $id ) );
-							if ( $id >= 0 && !in_array( $id, $exclude_form_ids ) ) {
+							$id = trim( $id );
+							if ( $id != '' && !in_array( $id, $exclude_form_ids ) ) {
 								$exclude_form_ids[] = $id;
 							}
 						}
@@ -118,8 +118,8 @@ class Affiliates_CF7_Admin {
 					if ( !empty( $ids ) ) {
 						$ids = explode( ',', $ids );
 						foreach ( $ids as $id ) {
-							$id = intval( trim( $id ) );
-							if ( $id >= 0 && !in_array( $id, $petition_form_ids ) ) {
+							$id = trim( $id );
+							if ( $id != '' && !in_array( $id, $petition_form_ids ) ) {
 								$petition_form_ids[] = $id;
 							}
 						}
